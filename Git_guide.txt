@@ -1,5 +1,5 @@
 When Git is installed, go to an empty directory and use git clone 
-https://github.com/MaximeDelaporte/TodoList-Lumen/tree/master <name your directory>
+https://github.com/MaximeDelaporte/TodoList-Lumen/ <name your directory>
 
 When it's done go inside this directory
 

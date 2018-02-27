@@ -7,5 +7,5 @@ do "git checkout dev" to switch to the dev branch
 Now that you're on 'dev' do "git checkout -b <name of your branch>"
 You have now a branch of your own
 You can commit your branch using "git add *" "git commit -m '<your commit>'"
-"git remote add https://github.com/MaximeDelaporte/TodoList-Lumen/"
-"git push origin dev"
+"git remote add <your branch> https://github.com/MaximeDelaporte/TodoList-Lumen/" (only for the first time)
+"git push origin <your branch>"

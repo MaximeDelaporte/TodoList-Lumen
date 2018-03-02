@@ -1,1 +1,11 @@
-Faites un git clone de votre dossier
+When Git is installed, go to an empty directory and use git clone 
+https://github.com/MaximeDelaporte/TodoList-Lumen/ <name your directory>
+
+When it's done go inside this directory
+
+do "git checkout dev" to switch to the dev branch
+Now that you're on 'dev' do "git checkout -b <name of your branch>"
+You have now a branch of your own
+You can commit your branch using "git add *" "git commit -m '<your commit>'"
+"git remote add <your branch> https://github.com/MaximeDelaporte/TodoList-Lumen/" (only for the first time)
+"git push origin <your branch>"

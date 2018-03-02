@@ -1,0 +1,13 @@
+body{
+margin:0;
+padding:0;
+}
+.hidden{
+display:none;
+}
+[data-use="account"]:hover{
+    cursor: pointer;
+}
+li{
+    list-style: none;
+}

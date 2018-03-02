@@ -19,13 +19,13 @@ echo "INSTALLING PHP EXTENSIONS"
    sudo apt-get install php7.2-zip -y
    sudo apt-get install openssl -y
    sudo apt-get install phpunit -y
+   sudo apt-get install php7.2-mysql -y
 echo "PREPARING MYSQL"
    sudo apt-get install debconf-utils -y > /dev/null
    debconf-set-selections <<< "mysql-server mysql-server/root_password password 0000"
    debconf-set-selections <<< "mysql-server mysql-server/root_password_again password 0000"
 echo "INSTALLING MYSQL"
    sudo apt-get install mysql-server -y > /dev/null
-   sudo apt-get install php7.2-mysql -y > /dev/null
 echo "UPDATE"
    sudo apt-get update
 echo "INSTALLING COMPOSER"
@@ -37,6 +37,6 @@ echo "INSTALLING COMPOSER"
    sudo mv composer.phar /usr/local/bin/composer
 echo "UPDATE"
    sudo apt-get update
-   composer update
 echo "INSTALLING LUMEN"
    composer create-project --prefer-dist laravel/lumen project
+   composer dumpautoload

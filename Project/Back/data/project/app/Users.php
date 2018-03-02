@@ -12,11 +12,11 @@ class Users extends Model implements Authenticatable
         'password'
     ];
     /*
-    * Get Todo of User
+    * Get Room of User
     *
     */
-    public function todo()
+    public function room()
     {
-        return $this->hasMany('App\Todo','user_id');
+        return $this->hasMany('App\Rooms','user_id');
     }
 }

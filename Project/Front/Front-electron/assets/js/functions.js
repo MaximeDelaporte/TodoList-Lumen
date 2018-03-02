@@ -24,10 +24,11 @@ $(document).ready(function () {
                 htmlRender += "<th>Task Category</th>";
                 htmlRender += "</tr>";
                 htmlRender += "<tr>";
-                htmlRender += "<td><input type='checkbox' id='unchecked'></td>";
+                htmlRender += "<td><input type='checkbox' id='checktodo'></td>";
                 htmlRender += "<td>" + taskName + "</td>";
                 htmlRender += "<td>" + taskDescription + "</td>";
                 htmlRender += "<td>" + taskCategory + "</td>";
+                htmlRender += "<td><button id='delete'>Bin</button></td>";
                 htmlRender += "</tr>";
                 htmlRender += "</table>";
                 i++;
@@ -39,11 +40,12 @@ $(document).ready(function () {
                 htmlRender += "<th> </th>";
                 htmlRender += "<th> </th>";
                 htmlRender += "</tr>";
-                htmlRender += "<tr>";
-                htmlRender += "<td><input type='checkbox' id='unchecked'></td>";
+                htmlRender += "<tr >";
+                htmlRender += "<td><input type='checkbox' id='checktodo'></td>";
                 htmlRender += "<td>" + taskName + "</td>";
                 htmlRender += "<td>" + taskDescription + "</td>";
                 htmlRender += "<td>" + taskCategory + "</td>";
+                htmlRender += "<td><button id='delete'>Bin</button></td>";
                 htmlRender += "</tr>";
                 i++;
                 $('[data-todolist="1"]').html(htmlRender);
@@ -56,4 +58,17 @@ $(document).ready(function () {
                     alert("Task Category is required");
         }
     });
+
+    $('#mytodolist').on('click', function () {
+        if ($('#checktodo').prop('checked')) {
+            alert('Are you sure to have finish the task? ');
+            $('#checktodo').hide()
+
+        } else {
+        }
+    });
+    /*$('#delete').on('click', function () {
+
+    })*/
+
 });

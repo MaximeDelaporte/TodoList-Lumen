@@ -5,8 +5,8 @@ class Rooms extends Model
 {
     //
 
-    protected $fillable = ['name','admin','users'];
-    protected $hidden = [];
+    protected $fillable = ['name','users','admin'];
+    protected $hidden = ['id'];
     /*
     * Get Todo of Rooms
     *
@@ -14,5 +14,9 @@ class Rooms extends Model
     public function todo()
     {
         return $this->hasMany('App\Todo','room_id');
+    }
+    public function user()
+    {
+        return $this->belongTo(Users::class);
     }
 }

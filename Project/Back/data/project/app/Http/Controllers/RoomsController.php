@@ -1,7 +1,9 @@
 <?php
 namespace App\Http\Controllers;
+use App\Rooms;
+use App\Tasklists;
 use Illuminate\Http\Request;
-use App\Todo;
+use App\Users;
 use Auth;
 class RoomsController extends Controller
 {
@@ -36,13 +38,11 @@ class RoomsController extends Controller
         $this->validate($request, [
             'name' => 'required'
         ]);
-        $user = Users::where(api_key, $request->input('authorization'))->first();
-        $id = $user.id;
-        if(Auth::user()->room()->Create($request, [
+        $admin = Users::where('api_key','=', $request->input('Authorization'))->value('id');
+        if(Rooms::Create([
             'name'  => $request->input('name'),
-            'admin' => $id,
-            'users' => $id
-        ])){
+            'admin' => $admin
+        ])->save()){
             return response()->json(['status' => 'success']);
         }else{
             return response()->json(['status' => 'fail']);
@@ -81,10 +81,22 @@ class RoomsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'users' => 'filled'
+            'name' => 'filled'
         ]);
         $room = Rooms::find($id);
         if($room->fill($request->all())->save()){
+            return response()->json(['status' => 'success']);
+        }
+        return response()->json(['status' => 'failed']);
+    }
+    public function addusers(Request $request){
+
+        $room = Rooms::find($request->input('id'))->get();
+
+        $user = Users::select('id')->where('email', $request->input('email'))->first();
+        return response()->json($user);
+
+        if ($room->insert('users', $user)->save()){
             return response()->json(['status' => 'success']);
         }
         return response()->json(['status' => 'failed']);

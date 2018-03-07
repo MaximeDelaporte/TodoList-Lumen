@@ -14,11 +14,9 @@ class CreateRoomsTable extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('admin')->unique();
-            $table->string('users');
+            $table->integer('admin')->unsigned();
+            $table->foreign('admin')->references('id')->on('users');
             $table->timestamps();
-            $table->foreign('admin')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('users')->references('id')->on('users');
         });
     }
     /**

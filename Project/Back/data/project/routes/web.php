@@ -15,7 +15,12 @@ $app->get('/', function () use ($app) {
 $app->group(['prefix' => 'api/'], function ($app) {
     $app->post('login/','UsersController@authenticate');
     $app->post('signup/','UsersController@create');
-    $app->get('users/{email}', 'UsersController@exist');
+    $app->post('room/', 'RoomsController@store');
+    $app->get('room/all', 'TasklistsController@index');
+    $app->get('room/{room}/','TasklistsController@show');
+    $app->post('room/users/', 'TasklistsController@store');
+    $app->post('room/users/add', 'TasklistsController@adduser');
+    $app->post('room/settings/','RoomsController@update');
     $app->post('todo/','TodoController@store');
     $app->get('todo/', 'TodoController@index');
     $app->get('todo/{id}/', 'TodoController@show');

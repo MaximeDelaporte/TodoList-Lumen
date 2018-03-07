@@ -50,12 +50,9 @@ class UsersController extends Controller
             return response()->json(['status' => 'fail']);
         }
     }
-    public function exist(Request $request)
+    public function exist($email)
     {
-        $this->validate($request,[
-            'email' =>'required|email|'
-        ]);
-        $user = Users::where('email', $request->input('email'))->first();
+        $user = Users::where('email', $email)->get();
         if(!empty($user)){
             return response()->json(['status' =>'success'],200);
         }
@@ -64,4 +61,3 @@ class UsersController extends Controller
         }
     }
 }
-?>

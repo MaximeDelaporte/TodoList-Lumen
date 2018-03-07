@@ -9,14 +9,15 @@ class Users extends Model implements Authenticatable
     use AuthenticableTrait;
     protected $fillable = ['username','email','password','userimage'];
     protected $hidden = [
-        'password'
+        'password',
+        'id'
     ];
     /*
     * Get Room of User
     *
     */
-    public function room()
+    public function tasklist()
     {
-        return $this->hasMany('App\Rooms','user_id');
+        return $this->hasMany('App\Tasklists','users_id');
     }
 }

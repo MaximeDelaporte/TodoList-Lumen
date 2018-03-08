@@ -1,9 +1,11 @@
 <template class="section-template">
     <section id="mytodolist" class="wrapper main-content">
         <div class="inner">
-            <h2>Todo List</h2>
-            <div id="tableTodo" data-action="createTable">
+            <div id="tableTodo" >
+                <h2>Todo List</h2>
                 <button data-use="addTodoList" id="addTodoList">+</button>
+            </div>
+            <div data-action="createTable">
                 <table data-todolist=1>
                     <thead>
                         <tr>
@@ -19,4 +21,3 @@
         </div>
     </section>
 </template>
-<!--<script type="text/javascript" src="./assets/DataTables/datatables.min.js"></script>-->

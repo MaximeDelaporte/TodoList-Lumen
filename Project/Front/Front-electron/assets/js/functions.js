@@ -3,6 +3,7 @@ $(document).ready(function () {
     let htmlRenderBis = "";
     let htmlRenderTer = "";
     let i = 1;
+    let z = 0;
     let todoListNumber = 1;
 
     // Todo list Table creation
@@ -20,7 +21,7 @@ $(document).ready(function () {
                 url: "",
                 data : {taskName, taskDescription, taskCategory}
             });*/
-            if (i == 1) {
+            if (i == 1 && z == 0) {
                 htmlRender += "<thead>";
                 htmlRender += "<tr>";
                 htmlRender += "<th>Done</th>";
@@ -29,6 +30,7 @@ $(document).ready(function () {
                 htmlRender += "<th>Task Category</th>";
                 htmlRender += "</tr>";
                 htmlRender += "</thead>";
+                z++;
             }
             htmlRender += "<tr>";
             htmlRender += "<td><input type='checkbox' id='checktodo-" + i + "'></td>";

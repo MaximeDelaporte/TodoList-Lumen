@@ -2,11 +2,28 @@ $(document).ready(function () {
     let htmlRender = "";
     let htmlRenderBis = "";
     let htmlRenderTer = "";
-    let i = 1;
-    let z = 0;
-    let todoListNumber = 1;
+    let htmlRender2;
+    let i;
+    let z;
+    let todoListNumber = 0;
 
-    // Todo list Table creation
+    // Create a new todoList
+    $('#addTodoList').on('click',function () {
+        i = 1;
+        todoListNumber += 1;
+        htmlRender = "";
+        htmlRender2 = "";
+        z = 0;
+
+        htmlRender += "<h3></h3>";
+        htmlRender += "<table data-todolist='" + todoListNumber + "'>";
+        htmlRender += "</table>";
+        $('[data-action="createTable"]').html(htmlRender);
+        htmlRender2 += "<button data-use='create-todo-list'>+</button><input type='text' name='Task-Name' id='taskName' placeholder='Type your task name'><input type='text' name='Task-Description' id='taskDescription' placeholder='Type the description'><input type='text' name='Task-Category' id='taskCategory' placeholder='Type the category'>";
+        $('#typingTask').html(htmlRender2);
+    });
+
+    // One TodoList Table creation
     $('body').on('click', '[data-use="create-todo-list"]', function () {
         if (document.querySelector('#taskName').value != "" && document.querySelector('#taskDescription').value != "" && document.querySelector('#taskCategory').value != "") {
             let taskName = document.querySelector('#taskName').value;
@@ -48,8 +65,6 @@ $(document).ready(function () {
         } if (document.querySelector('#taskCategory').value == "") {
                     alert("Task Category is required");
         }
-
-
     });
 
     // Achieve a task

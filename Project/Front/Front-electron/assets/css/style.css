@@ -90,3 +90,7 @@ a:hover {
     flex-direction: row;
     justify-content: space-between;
 }
+
+#mytodolist {
+    width: 100%
+}

@@ -68,17 +68,26 @@ $(document).ready(function () {
 
         $(this).closest('tr').remove();
         htmlRenderBis = htmlRender.split('<tr>'); // put the string into an array to make easier the deleting
-        for (let k = 2, l=firstTr; k < htmlRenderBis.length; k++, l++) {
+        for (let k = 2, l=firstTr; l < htmlRenderBis.length; k++, l++) {
             if($(this).closest('tr')["0"].firstChild.children["0"].id.slice(-1) == l){
                 htmlRenderBis[k] = htmlRenderBis[k].replace(/(<.+)/g, ""); //delete the needed table row
+                if (htmlRenderBis[k+1] != null){
+                    for(let m = k+1, n = l; m < htmlRenderBis.length; m++, n++)
+                    htmlRenderBis[m] = htmlRenderBis[m].replace(/-(\d+)/g, '-' + n); //change id from next row if exists
+                }
+                i -= 1;
             }
         }
 
-        htmlRenderTer = "";
+        htmlRenderTer = ""; //reinitialize the variable
         $.each(htmlRenderBis, function(index, value) {
             htmlRenderTer += JSON.stringify(htmlRenderBis[index]); // stringify the Array
         });
+
         htmlRender = htmlRenderTer.replace(/"([^"]+)"/g, "<tr>$1"); // we put back the tr tag
         htmlRender = htmlRender.replace(htmlRender.slice(0, 4), ""); // we delete the extra tr tag at the start
+        htmlRender = htmlRender.replace(/""/g, "");
+
+        $('[data-todolist="1"]').html(htmlRender); // refresh the page
     })
 });

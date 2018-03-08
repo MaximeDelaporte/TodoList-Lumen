@@ -19,7 +19,6 @@ $(document).ready(function () {
                 url: "",
                 data : {taskName, taskDescription, taskCategory}
             });*/
-            //debugger;
             if (i == 1) {
                 htmlRender += "<thead>";
                 htmlRender += "<tr>";
@@ -69,10 +68,8 @@ $(document).ready(function () {
 
         $(this).closest('tr').remove();
         htmlRenderBis = htmlRender.split('<tr>'); // put the string into an array to make easier the deleting
-        debugger;
         for (let k = 2, l=firstTr; k < htmlRenderBis.length; k++, l++) {
             if($(this).closest('tr')["0"].firstChild.children["0"].id.slice(-1) == l){
-                debugger;
                 htmlRenderBis[k] = htmlRenderBis[k].replace(/(<.+)/g, ""); //delete the needed table row
             }
         }
@@ -83,6 +80,5 @@ $(document).ready(function () {
         });
         htmlRender = htmlRenderTer.replace(/"([^"]+)"/g, "<tr>$1"); // we put back the tr tag
         htmlRender = htmlRender.replace(htmlRender.slice(0, 4), ""); // we delete the extra tr tag at the start
-        debugger;
     })
 });

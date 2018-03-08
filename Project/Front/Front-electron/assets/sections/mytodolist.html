@@ -3,8 +3,19 @@
         <div class="inner">
             <h2>Todo List</h2>
             <div data-action="createTable">
+                <table data-todolist=1>
+                    <thead>
+                        <tr>
+                            <th>Done</th>
+                            <th>Task name</th>
+                            <th>Task Description</th>
+                            <th>Task Category</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
             <p><button data-use="create-todo-list">+</button><input type="text" name="Task-Name" id="taskName" placeholder="Type your task name"><input type="text" name="Task-Description" id="taskDescription" placeholder="Type the description"><input type="text" name="Task-Category" id="taskCategory" placeholder="Type the category"></p>
         </div>
     </section>
 </template>
+<!--<script type="text/javascript" src="./assets/DataTables/datatables.min.js"></script>-->

@@ -3,6 +3,7 @@ $(document).ready(function () {
     let htmlRenderBis = "";
     let htmlRenderTer = "";
     let i = 1;
+    let todoListNumber = 1;
 
     // Todo list Table creation
     $('body').on('click', '[data-use="create-todo-list"]', function () {
@@ -37,7 +38,7 @@ $(document).ready(function () {
             htmlRender += "<td><button name='delete' id='delete-" +  i + "'>Bin</button></td>";
             htmlRender += "</tr>";
             i++;
-            $('[data-todolist="1"]').html(htmlRender);
+            $('[data-todolist="' + todoListNumber + '"]').html(htmlRender);
         } if (document.querySelector('#taskName').value == "") {
                     alert("Task Name is required");
         } if (document.querySelector('#taskDescription').value == "") {
@@ -88,6 +89,6 @@ $(document).ready(function () {
         htmlRender = htmlRender.replace(htmlRender.slice(0, 4), ""); // we delete the extra tr tag at the start
         htmlRender = htmlRender.replace(/""/g, "");
 
-        $('[data-todolist="1"]').html(htmlRender); // refresh the page
+        $('[data-todolist="' + todoListNumber + '"]').html(htmlRender); // refresh the page
     })
 });

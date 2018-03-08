@@ -80,3 +80,13 @@ a:hover {
 .intro .inner {
     padding-top: 255px;
 }
+
+.taskDone {
+    color: green;
+}
+
+#tableTodo {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}

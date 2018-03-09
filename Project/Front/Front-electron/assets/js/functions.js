@@ -7,10 +7,9 @@ $(document).ready(function () {
     let z;
     let todoListNumber = 0;
 
-
     // Create a new todoList
     $('#addTodoList').on('click', function () {
-        debugger;
+        //debugger;
         i = 1;
         z = 0;
         todoListNumber += 1;
@@ -20,13 +19,13 @@ $(document).ready(function () {
         listUl += "<li><a href='#'>" + todoListName + "</a></li>";
         $('#navbar').removeClass('hidden');
         $('#listTodoList').html(listUl);
-
+debugger;
         let todoTable = $('<h3>')
             .append(todoListName);
         let createTable =$('<table>')
             .attr("data-todolist", todoListNumber);
-        let tableFinal = todoTable.append(createTable);
-        $('[data-action="createTable"]').html(tableFinal);
+        //let tableFinal = todoTable.after(createTable);
+        $('[data-action="createTable"]').html(todoTable).append(createTable);
 
 
         let createTodoTaskButton = $('<button>');
@@ -51,9 +50,18 @@ $(document).ready(function () {
                     type:"text",
                     name:"Task-Category",
                     id:"taskCategory",
-                    placeholder:"Type your task Category"
+                    placeholder:"Type your task Category",
+                    list: "taskCategoryName"
                 });
-        $('#typingTask').html(createTodoTaskButton).append(input1, input2, input3);
+        let datalistInput = $('<datalist>')
+                .attr("id", "taskCategoryName")
+                .append($('<option>')
+                    .append("Work"))
+                .append($('<option>')
+                    .append("Home"))
+                .append($('<option>')
+                    .append("Misc"));
+        $('#typingTask').html(createTodoTaskButton).append(input1, input2, input3, datalistInput);
         return todoListNumber;
     });
 
@@ -141,5 +149,5 @@ $(document).ready(function () {
         htmlRender = htmlRender.replace(/""/g, "");
 
         $('[data-todolist="' + todoListNumber + '"]').html(htmlRender); // refresh the page
-    })
+    });
 });

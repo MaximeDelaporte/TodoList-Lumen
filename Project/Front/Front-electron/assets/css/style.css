@@ -52,10 +52,10 @@ a:hover {
 
 #sidebar+#wrapper {
     margin-left: 0;
-    padding-top: 3.5em;
+    padding-top: 3em;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
     width: 100%;
 }
 
@@ -63,7 +63,7 @@ a:hover {
         margin-left: 18em;
 }
 
-#wrapper+#header>.wrapper>.inner {
+#wrapper+#header>.wrapper>.container>.inner {
             margin: 0 auto;
 }
 
@@ -92,5 +92,33 @@ a:hover {
 }
 
 #mytodolist {
-    width: 100%
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+nav li {
+    padding-bottom: 15px;
+    list-style: none;
+}
+
+nav li a {
+    text-decoration: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.inner{
+    width: 80%;
+}
+
+#navbar {
+    width: 20%;
+    background-color: #8E9CB2;
+    height: 93vh;
 }

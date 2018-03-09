@@ -7,10 +7,11 @@ class Users extends Model implements Authenticatable
 {
     //
     use AuthenticableTrait;
-    protected $fillable = ['username','email','password','userimage'];
+    protected $fillable = ['name','email','password','userimage'];
     protected $hidden = [
         'password',
-        'id'
+        'id',
+        'api_key'
     ];
     /*
     * Get Room of User

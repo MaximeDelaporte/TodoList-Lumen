@@ -39,12 +39,23 @@ class RoomsController extends Controller
             'name' => 'required'
         ]);
         $admin = Users::where('api_key','=', $request->input('Authorization'))->value('id');
+        $exists =Rooms::where([['name','=', $request->input('name')],['admin','=',$admin]])->exists();
+        if ($exists){
+            return response()->json(['status' => 'exists']);
+        }
         if(Rooms::Create([
             'name'  => $request->input('name'),
             'admin' => $admin
         ])->save()){
-            return response()->json(['status' => 'success']);
-        }else{
+            $id = Rooms::where([['name','=', $request->input('name')],['admin','=',$admin]])->value('id');
+            if(Tasklists::Create([
+                'user_id' => $admin,
+                'room_id' => $id
+            ])->save()){
+                return response()->json(['status' => 'success', 'room_id' => $id]);
+            }
+        }
+        else{
             return response()->json(['status' => 'fail']);
         }
     }

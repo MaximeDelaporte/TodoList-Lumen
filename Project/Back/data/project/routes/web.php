@@ -15,9 +15,12 @@ $app->get('/', function () use ($app) {
 $app->group(['prefix' => 'api/'], function ($app) {
     $app->post('login/','UsersController@authenticate');
     $app->post('signup/','UsersController@create');
+    $app->get('profile/', 'UsersController@show');
+    $app->put('profile/edit/','UsersController@update');
     $app->post('room/', 'RoomsController@store');
     $app->get('room/all', 'TasklistsController@index');
     $app->get('room/{room}/','TasklistsController@show');
+    $app->get('room/{room}/users/', 'TasklistsController@users');
     $app->post('room/users/', 'TasklistsController@store');
     $app->post('room/users/add', 'TasklistsController@adduser');
     $app->post('room/settings/','RoomsController@update');

@@ -1,5 +1,7 @@
 <?php
 namespace App\Http\Controllers;
+use App\Tasklists;
+use App\Rooms;
 use Illuminate\Http\Request;
 use App\Todo;
 use Auth;
@@ -22,7 +24,7 @@ class TodoController extends Controller
      */
     public function index(Request $request)
     {
-        $todo = Auth::user()->todo()->get();
+        $todo = Auth::user()->room()->todo()->get();
         return response()->json(['status' => 'success','result' => $todo]);
     }
     /**
@@ -35,10 +37,11 @@ class TodoController extends Controller
     {
         $this->validate($request, [
             'todo' => 'required',
-            'description' => 'required',
-            'category' => 'required'
+            'room_id' => 'required'
         ]);
-        if(Auth::user()->todo()->Create($request->all())){
+        $user = Tasklists::join('users','tasklists.user_id','users.id')->where('users.api_key','=',$request->input('Authorization'))->get();
+        if($user)
+            if(Rooms::todo()->Create($request->all())){
             return response()->json(['status' => 'success']);
         }else{
             return response()->json(['status' => 'fail']);
@@ -52,7 +55,7 @@ class TodoController extends Controller
      */
     public function show($id)
     {
-        $todo = Todo::where('id', $id)->get();
+        $todo = Todo::where('room_id', $id)->get();
         return response()->json($todo);
 
     }

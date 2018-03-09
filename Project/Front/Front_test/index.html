@@ -22,10 +22,19 @@
                 <input type='password' value="" placeholder="Password" data-use="newpassword">
                 <input type="submit" value='Create Account' data-action="subscribe">
             </section>
+            <section data-use="room" class="hidden">
+                <input type='text'  placeholder="Name of your room" data-use="newroomname">
+                <input type="submit" value='Create Room' data-action="newRoom">
+                <input type='email' value="" placeholder="Find someone to work with" data-use="addusers">
+                <input type="submit" value="Add Coworker" data-action="adduser">
+                <input type="submit" value="Show Users of current room" data-action="showUsers">
+                <input type='submit' value="Show current room" data-action="showRoom">
+
+            </section>
             <input type="submit" value='Disconnect' data-action="disconnect" class="hidden">
             <section data-use="task" class="hidden">
                 <input type="button" id="deleteAcc" value="Delete">
-                <input type="submit" value="Tasks" data-action="getTasks">
+                <input type="submit" value="Rooms" data-action="getRooms">
                 <div class="addTask">
                     <p>New Task ? Write it here</p>
                     <input type='text' placeholder="To do" data-use="newTodo">

@@ -5,7 +5,8 @@ class Todo extends Model
 {
     //
     protected $table = 'todo';
-    protected $fillable = ['todo','category','room_id','description'];
+    protected $fillable = ['todo','category','room_id','description','finished'];
+    protected $hidden = ['room_id'];
 
     public function room()
     {

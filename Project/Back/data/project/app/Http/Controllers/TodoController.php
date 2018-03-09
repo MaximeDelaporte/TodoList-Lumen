@@ -24,8 +24,9 @@ class TodoController extends Controller
      */
     public function index(Request $request)
     {
-        $todo = Auth::user()->room()->todo()->get();
-        return response()->json(['status' => 'success','result' => $todo]);
+        $room_id = $request->input('room_id');
+        $todos = Todo::join('rooms','rooms.id','=','todo.room_id')->select('*')->where('rooms.id','=', $room_id)->get();
+        return response()->json(['status' => 'success','result' => $todos]);
     }
     /**
      * Store a newly created resource in storage.
@@ -40,8 +41,10 @@ class TodoController extends Controller
             'room_id' => 'required'
         ]);
         $user = Tasklists::join('users','tasklists.user_id','users.id')->where('users.api_key','=',$request->input('Authorization'))->get();
+        $request->merge(['finished'=>false]);
+
         if($user)
-            if(Rooms::todo()->Create($request->all())){
+            if(Todo::create($request->all())){
             return response()->json(['status' => 'success']);
         }else{
             return response()->json(['status' => 'fail']);

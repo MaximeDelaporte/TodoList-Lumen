@@ -110,12 +110,15 @@ $(document).ready(function(){
                 $('[data-use="result"]').html(htmlRender);
             }
         })
-    })
+    });
     $('[data-action="disconnect"]').on('click', function(){
         localStorage.removeItem('token');
         alert("Vous etes deconnecté");
         location.reload();
-    })
+    });
+    $('[data-action="showTasks"]').on('click', function(){
+        $.get("http://192.168.33.10:8000/api/todo", {Authorization:localStorage.getItem('token'), room_id:localStorage.getItem('currentRoom')})
+    });
     $('[data-action="getRooms"]').on('click', function(){
         $.get("http://192.168.33.10:8000/api/room/all",{ Authorization:localStorage.getItem('token')},function(data){
             var htmlRender = "";

@@ -13,7 +13,7 @@
       <div class="form">
 
         <!-- Create -->
-        <form class="register-form" id="mainForm" method="post">
+        <form class="register-form" id="createForm" method="post">
           <input id="nameCreate" type="text" name="name" placeholder="username">
           <input id="mdpCreate" type="text" name="mdp" placeholder="password">
           <input id="emailCreate" type="text" name="email" placeholder="email">
@@ -27,7 +27,7 @@
           <input id="emaillog" type="text" name="email" placeholder="email" required>
           <input id="mdplog" type="password" name="mdp" placeholder="password" required>
           <button data-use="buttonConnect" id="connexion">Login</button>
-          <p class="message">Pas encore enregistré ? <a href="#mainForm"> Register</a></p>
+          <p class="message">Pas encore enregistré ? <a href="#createForm"> Register</a></p>
         </form>
 
       </div>
@@ -41,10 +41,11 @@
   </body>
   <script> window.$ = window.jQuery =  require('./jquery-3.3.1.min.js');</script>
   <script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
-  <script src="js/form.js"></script>
+  <script src="js/connexion.js"></script>
   <script src="main.js"></script>
   <script src="js/renderer.js"></script>
-  <script src="./js/formulaire.js"></script>
+  <script src="js/formulaire.js"></script>
+  <script src="js/switch.js"></script>
 
 
 </html>

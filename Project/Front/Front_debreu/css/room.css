@@ -1,0 +1,141 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ----------- PROFILE ----------- */
+#profile{
+  background-color: lightgrey;
+  margin: none;
+  padding: 10px 15px 76px 15px;
+  position: relative;
+  display: block;
+  flex-direction: column;
+}
+
+h3 {
+margin: none;
+}
+
+
+
+/* ----------- SIDEBAR ----------- */
+#sidebar {
+  background-color: #151718;
+  width: 200px;
+  height: 100%;
+  display: block;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: absolute;
+  left: -200px;
+  top: 0;
+  transition: left 0.3s linear;
+  margin-top: 108px;
+}
+
+#sidebar.visible{
+  left: 0px;
+  transition: left 0.3s linear;
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+li {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+ul li b{
+  list-style: none;
+  display: block;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+ul li a {
+  background-color: #1c1e1f;
+  color: lightgrey;
+  border-bottom: 1px solid #111;
+  display: block;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 140px;
+  padding: 10px;
+  text-decoration: none;
+  text-align: center;
+}
+
+ul li a:hover {
+  color: white;
+}
+
+/* bouton supprimer */
+b {
+  font-family: sans-serif;
+  background-color: darkred;
+  color: lightgrey;
+  border-bottom: 1px solid #111;
+  display: block;
+  width: 20px;
+  padding: 10px;
+  text-decoration: none;
+  text-align: center;
+  margin: 0;
+  cursor: pointer;
+  font-size: 10px;
+  z-index: 1;
+}
+
+b:hover {
+  color: white;
+  background-color: red;
+  transition-duration: 0.4s;
+}
+
+/* ----------- BURGER MENU  btn -----------*/
+
+#sidebar-btn{
+  width: auto;
+  height: 15px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: -59px;
+  padding: 0;
+  align-items: center;
+}
+
+#sidebar-btn p {
+  background-color: #151718;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: lightgrey;
+  padding: 10px;
+}
+
+#sidebar-btn p:hover {
+  color: white;
+}
+
+/* ----------- CONTENT ----------- */
+
+.content {
+  margin: 50px 220px 50px 220px;
+  display: block;
+  text-align: center;
+}
+
+[input type="button"]{
+  outline: none;
+  color: white;
+  background-color: #151718;
+}

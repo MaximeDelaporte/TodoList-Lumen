@@ -1,10 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use Illuminate\View\View;
 
-class HomeController extends Controller
+class ExampleController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -16,16 +14,5 @@ class HomeController extends Controller
         //
     }
 
-    public function index()
-    {
-        return view('home');
-    }
-    public function showLogin()
-    {
-        return View::make('login');
-    }
-    public function doLogin()
-    {
-        //process the form
-    }
+    //
 }

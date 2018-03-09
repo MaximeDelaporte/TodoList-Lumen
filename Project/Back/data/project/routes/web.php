@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -10,12 +9,24 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
-
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$app->get('/', function () use ($app) {
+    return $app->version();
 });
-$router->get('login', array('uses' =>'HomeController@showLogin'));
-
-$router->post('login', array('uses' => 'HomeController@doLogin'));
-
-$router->get('logout', array('uses' => 'HomeController@doLogout'));
+$app->group(['prefix' => 'api/'], function ($app) {
+    $app->post('login/','UsersController@authenticate');
+    $app->post('signup/','UsersController@create');
+    $app->get('profile/', 'UsersController@show');
+    $app->put('profile/edit/','UsersController@update');
+    $app->post('room/', 'RoomsController@store');
+    $app->get('room/all', 'TasklistsController@index');
+    $app->get('room/{room}/','TasklistsController@show');
+    $app->get('room/{room}/users/', 'TasklistsController@users');
+    $app->post('room/users/', 'TasklistsController@store');
+    $app->post('room/users/add', 'TasklistsController@adduser');
+    $app->post('room/settings/','RoomsController@update');
+    $app->post('todo/','TodoController@store');
+    $app->get('todo/', 'TodoController@index');
+    $app->get('todo/{id}/', 'TodoController@show');
+    $app->put('todo/{id}/', 'TodoController@update');
+    $app->delete('todo/{id}/', 'TodoController@destroy');
+});

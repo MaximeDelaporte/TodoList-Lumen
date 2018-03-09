@@ -37,6 +37,8 @@ echo "INSTALLING COMPOSER"
    sudo mv composer.phar /usr/local/bin/composer
 echo "UPDATE"
    sudo apt-get update
-echo "INSTALLING LUMEN"
-   composer create-project --prefer-dist laravel/lumen project
-   composer dumpautoload
+   composer update
+echo "CLONE LASTEST PROJECT BACK FROM DEV"
+   git clone  https://github.com/MaximeDelaporte/TodoList-Lumen/tree/dev/Project/Back/data/project
+   cd project
+   composer install

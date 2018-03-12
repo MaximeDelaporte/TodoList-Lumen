@@ -30,13 +30,15 @@ $(document).ready(function () {
         //adding button and the 3 inputs task bar
         let createTodoTaskButton = $('<button>');
         createTodoTaskButton.append('+')
-            .attr("data-use","create-todo-list");
+            .attr("data-use","create-todo-list")
+            .attr("data-action","newTask");
         let input1 = $('<input>')
                 .attr({
                     type:"text",
                     name:"Task-Name",
                     id:"taskName",
                     placeholder:"Type your task name",
+                    "data-use":"newTodo",
                     required: true,
                     autocomplete: true
                 });
@@ -46,6 +48,7 @@ $(document).ready(function () {
                     name:"Task-Description",
                     id:"taskDescription",
                     placeholder:"Type your task Description",
+                    "data-use":"newDescription",
                     required: true,
                     autocomplete: true
                 });
@@ -55,6 +58,7 @@ $(document).ready(function () {
                     name:"Task-Category",
                     id:"taskCategory",
                     placeholder:"Type your task Category",
+                    "data-use":"newCategory",
                     list: "taskCategoryName",
                     required: true
                 });
@@ -101,7 +105,7 @@ $(document).ready(function () {
             htmlRender += "<td>" + taskName + "</td>";
             htmlRender += "<td>" + taskDescription + "</td>";
             htmlRender += "<td>" + taskCategory + "</td>";
-            htmlRender += "<td><button name='delete' id='delete-" +  i + "'>Bin</button></td>";
+            htmlRender += "<td><button name='delete' id='delete-" +  i + " ' data-action='deleteToDo'>Bin</button></td>";
             htmlRender += "</tr>";
             i++;
             $('[data-todolist="' + todoListNumber + '"]').html(htmlRender);

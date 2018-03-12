@@ -4,7 +4,7 @@
   margin: 0;
   padding: 10px 15px 76px 15px;
   position: relative;
-  display: block;
+  display: flex;
   flex-direction: column;
 }
 
@@ -19,7 +19,7 @@ margin: none;
   background-color: #151718;
   width: 200px;
   height: 100%;
-  display: block;
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   position: absolute;
@@ -37,7 +37,7 @@ margin: none;
 ul{
   margin: 0;
   padding: 0;
-  display: flex;
+  display: block;
   flex-direction: row;
   flex-wrap: wrap;
 }
@@ -78,7 +78,7 @@ b {
   background-color: darkred;
   color: lightgrey;
   border-bottom: 1px solid #111;
-  display: block;
+  display: flex;
   width: 20px;
   padding: 10px;
   text-decoration: none;
@@ -123,9 +123,10 @@ b:hover {
 /* ----------- CONTENT ----------- */
 
 .content {
-  margin: 50px 220px 50px 220px;
-  display: block;
-  text-align: center;
+    margin: 50px 220px 50px 220px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 
 input [type="button"]{

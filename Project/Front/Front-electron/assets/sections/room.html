@@ -1,38 +1,29 @@
 <template class="section-template">
     <section id="myroom">
-        <section class="inner">
+        <section class="inner" data-use="room">
             <div id="profile">
-              <h3>Profile</h3>
+                <h3>Profile</h3>
             </div>
 
             <!-- Sidebar -->
             <div id="sidebarBis">
-              <ul>
-                <li><a href="#">Room 1</a></li>
-                <li><a href="#">Room 2</a></li>
-                <li><a href="#">Room 3</a></li>
-                <li><a href="#">Room 4</a></li>
-                <li><a href="#">Room 5</a></li>
-              </ul>
+                <ul>
+                </ul>
 
-              <div id="sidebar-btn">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
+                <div id="sidebar-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
 
             </div>
 
             <div class="content">
-              <h1>Bienvenue !</h1>
-              <p>Vous pouvez choisir votre Room dans le menu à gauche</p>
-              <p>Ou bien vous pouvez créer un Room en cliquant sur le bouton en dessous</p>
-              <input type="button" onclick="window.location.href='#'" id="creer" name="creer" value="Creer une Room">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                 quis nostrud exercitation </p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                 tempor incididunt ut </p>
+                <h1>Bienvenue !</h1>
+                <p>Vous pouvez choisir votre Room dans le menu à gauche</p>
+                <p>Ou bien vous pouvez créer un Room en cliquant sur le bouton en dessous</p>
+                <input type='text'  placeholder="Name of your room" data-use="newRoomName">
+                <input type="button" onclick="window.location.href='#'" id="createRoom" name="createRoom" value="Create a Room" data-action="newRoom">
             </div>
 
         </section>

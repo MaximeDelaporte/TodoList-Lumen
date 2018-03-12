@@ -16,7 +16,7 @@ $(document).ready(function() {
                 if(json.response === 'ok'){
                     alert('création OK');
                     // On entre dans la todolist
-                    window.location.href = '';
+                    window.location.href = '#';
                 }
                 $("#createForm").validate({
                     rules:{

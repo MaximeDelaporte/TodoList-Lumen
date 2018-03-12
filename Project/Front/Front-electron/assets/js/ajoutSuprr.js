@@ -8,10 +8,9 @@ jQuery(document).ready(function(){
     });
 
     // Ajouter une room
-    $('#creer').on('click', function(){
-        debugger;
-        //var text = $('text')[0].value;
-        $('#sidebar ul').append('<li class="room"><a href="#"></a><b id="removeRoom">X</b></li>');
+    $('#createRoom').on('click', function(){
+        let text = $('[data-use="newRoomName"]')[0].value;
+        $('#sidebarBis ul').append('<li class="room"><a href="#" data-use="deleteRoom">' + text + '</a><b id="removeRoom" data-action="deleteRoom">X</b></li>');
     });
 
 

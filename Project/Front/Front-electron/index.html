@@ -17,30 +17,26 @@
         <ul>
             <li><a id="welcome-topbar" data-section="welcome" href="#">Home</a></li>
             <li><a id="login-topbar" data-section="login" href="#">Log in</a></li>
-            <li><a id="logout-topbar" data-section="welcome" href="#">Log out</a></li>
+            <li><a id="myroom-menu" data-section="myroom" href="#">My room</a></li>
+            <li><a id="mytodolist-menu" data-section="mytodolist" href="#">My todo list</a></li>
             <li><a id="settings-topbar" data-section="settings" href="#">Settings</a></li>
+            <li><a id="logout-topbar" data-section="welcome" href="#" data-action="disconnect" class="hidden">Log out</a></li>
         </ul>
     </section>
-        <section id="sidebar" class="menu">
-            <ul>
-                <li><a id="myroom-menu" data-section="myroom" href="#">My room</a></li>
-                <li><a id="mytodolist-menu" data-section="mytodolist" href="#">My todo list</a></li>
-            </ul>
-        </section>
         <div id="wrapper">
         </div>
     </body>
     <script>window.$ = window.jQuery = require('./assets/js/jquery.min.js');</script>
-    <script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.$ = window.jQuery = require('./assets/js/jquery.validate.min.js');</script>
     <script>
         require('./assets/js/menu.js');
         require('./assets/js/functions.js');
         require('./assets/js/connexion.js');
-        require('./assets/js/formulaire.js');
+        //require('./assets/js/formulaire.js');
         require('./assets/js/switch.js');
         require('./assets/js/ajoutSuprr.js');
-        require('./assets/js/form.js');
+        //require('./assets/js/form.js');
         require('./assets/js/sidebarMenuRoom.js');
+        require('./assets/js/script.js');
     </script>
 </html>

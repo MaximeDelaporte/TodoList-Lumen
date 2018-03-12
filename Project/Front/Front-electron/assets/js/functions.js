@@ -19,15 +19,15 @@ $(document).ready(function () {
         listUl += "<li><a href='#'>" + todoListName + "</a></li>";
         $('#navbar').removeClass('hidden');
         $('#listTodoList').html(listUl);
-debugger;
+
+        //adding title and table tag
         let todoTable = $('<h3>')
             .append(todoListName);
         let createTable =$('<table>')
             .attr("data-todolist", todoListNumber);
-        //let tableFinal = todoTable.after(createTable);
         $('[data-action="createTable"]').html(todoTable).append(createTable);
 
-
+        //adding button and the 3 inputs task bar
         let createTodoTaskButton = $('<button>');
         createTodoTaskButton.append('+')
             .attr("data-use","create-todo-list");
@@ -36,14 +36,18 @@ debugger;
                     type:"text",
                     name:"Task-Name",
                     id:"taskName",
-                    placeholder:"Type your task name"
+                    placeholder:"Type your task name",
+                    required: true,
+                    autocomplete: true
                 });
         let input2 = $('<input>')
                 .attr({
                     type:"text",
                     name:"Task-Description",
                     id:"taskDescription",
-                    placeholder:"Type your task Description"
+                    placeholder:"Type your task Description",
+                    required: true,
+                    autocomplete: true
                 });
         let input3 = $('<input>')
                 .attr({
@@ -51,7 +55,8 @@ debugger;
                     name:"Task-Category",
                     id:"taskCategory",
                     placeholder:"Type your task Category",
-                    list: "taskCategoryName"
+                    list: "taskCategoryName",
+                    required: true
                 });
         let datalistInput = $('<datalist>')
                 .attr("id", "taskCategoryName")
@@ -106,6 +111,18 @@ debugger;
                     alert("Task Description is required");
         } if ($('#taskCategory')[0].value == "") {
                     alert("Task Category is required");
+        }
+         //Checking for available category task
+        for (let p = 0; p<$('#taskCategoryName')[0].options.length;p++){
+            if ($('#taskCategory')[0].value != $('#taskCategoryName')[0].options[p].innerText) {
+
+                //adding a new category task
+                let datalistInput = $('<option>').append($('#taskCategory')[0].value);
+                $('#taskCategoryName').append(datalistInput);
+                break;
+            } else if ($('#taskCategory')[0].value == $('#taskCategoryName')[0].options[p].innerText) {
+                break;
+            }
         }
     });
 

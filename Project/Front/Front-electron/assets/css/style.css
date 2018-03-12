@@ -1,5 +1,6 @@
 body {
     background-color: aliceblue;
+    font-family: "Roboto", sans-serif;
     display: flex;
     flex-direction: row;
     width: 100vw;
@@ -121,4 +122,166 @@ nav li a {
     width: 20%;
     background-color: #8E9CB2;
     height: 93vh;
+}
+
+/* --------------------------------------- */
+/* --------- LOGIN + REGISTER  ----------- */
+/* --------------------------------------- */
+
+.login-page{
+    display: flex;
+    justify-content: center;
+    padding: 10% 0 0;
+}
+
+.form{
+    z-index: 1;
+    text-align: center;
+}
+
+.form input{
+    width: auto;
+    margin: 0 0 15px;
+    padding: 15px;
+}
+
+.form button{
+    margin-top: 15px;
+    padding: 5px 15px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    background-color: transparent;
+}
+
+.form button:hover {
+    background: #18392b;
+    margin-top: 15px;
+    padding: 5px 15px;
+    color: whitesmoke;
+    outline: none;
+    border: none;
+    transition-property: background-color;
+    transition-timing-function: ease-in-out;
+    transition-duration:  650ms;
+    animation-iteration-count: infinite;
+}
+
+[type="text"] {
+    background-color: transparent;
+    text-align: center;
+    border: none;
+    border-style: inherit;
+    border-bottom: .5px solid #18392b;
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    margin-bottom: 15px;
+    padding: 12px 15px;
+}
+
+[type="text"]:focus {
+    color: #18392b;
+    outline: none;
+    border-bottom: .5px solid tomato;
+}
+
+[type="text"]:hover {
+    border-bottom: .5px solid tomato;
+}
+
+[type="password"] {
+    background-color: transparent;
+    text-align: center;
+    border: none;
+    border-style: hidden;
+    border-bottom: .5px solid #18392b;
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    padding: 12px 15px;
+    text-decoration: none;
+}
+
+[type="password"]:focus {
+    color: #18392b;
+    outline: none;
+    border-bottom: .5px solid tomato;
+}
+
+[type="password"]:hover{
+    border-bottom: .5px solid tomato;
+}
+
+[type="email"]{
+    background-color: transparent;
+    text-align: center;
+    border: none;
+    border-style: hidden;
+    border-bottom: .5px solid #18392b;
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    padding: 12px 15px;
+    text-decoration: none;
+}
+
+[type="email"]:focus {
+    color: #18392b;
+    outline: none;
+    border-bottom: .5px solid tomato;
+}
+
+[type="email"]:hover{
+    border-bottom: .5px solid tomato;
+}
+
+::placeholder {
+    color: tomato;
+}
+
+
+[type="create"] {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    padding: 5px 15px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    background-color: transparent;
+    border-bottom: .5px solid #18392b;
+}
+
+[type="create"]:hover {
+    background: #18392b;
+    margin-top: 15px;
+    padding: 5px 15px;
+    color: whitesmoke;
+    outline: none;
+    border: none;
+    transition-property: background-color;
+    transition-timing-function: ease-in-out;
+    transition-duration:  650ms;
+    animation-iteration-count: infinite;
+}
+
+.message {
+    font-size: 10px;
+    margin-top: 30px;
+}
+
+.message a{
+    text-decoration: none;
+    color: #18392b;
+}
+
+.message a:hover{
+    color: tomato;
+}
+
+.form .register-form{
+    display: none;
 }

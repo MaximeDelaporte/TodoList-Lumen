@@ -2,7 +2,9 @@
   "name": "new electron",
   "version": "0.0.1",
   "main": "main.js",
-  "dependencies": {},
+  "dependencies": {
+    "jquery-validation": "^1.17.0"
+  },
   "devDependencies": {
     "electron": "^1.8.2"
   }

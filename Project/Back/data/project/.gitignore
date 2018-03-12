@@ -2,4 +2,8 @@
 /.idea
 Homestead.json
 Homestead.yaml
+<<<<<<< HEAD
 .env
+=======
+.env.example
+>>>>>>> d0eaaf208f1cddcc633fcdc177837f439f942b1b

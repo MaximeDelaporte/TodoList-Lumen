@@ -14,7 +14,11 @@ Documentation for the framework can be found on the [Lumen website](http://lumen
 
 ## Security Vulnerabilities
 
+<<<<<<< HEAD
 If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+=======
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+>>>>>>> d0eaaf208f1cddcc633fcdc177837f439f942b1b
 
 ## License
 

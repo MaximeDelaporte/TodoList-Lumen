@@ -1,13 +1,20 @@
 <?php
+<<<<<<< HEAD
 
 require_once __DIR__.'/../vendor/autoload.php';
 
+=======
+require_once __DIR__.'/../vendor/autoload.php';
+>>>>>>> d0eaaf208f1cddcc633fcdc177837f439f942b1b
 try {
     (new Dotenv\Dotenv(__DIR__.'/../'))->load();
 } catch (Dotenv\Exception\InvalidPathException $e) {
     //
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> d0eaaf208f1cddcc633fcdc177837f439f942b1b
 /*
 |--------------------------------------------------------------------------
 | Create The Application
@@ -18,6 +25,7 @@ try {
 | application as an "IoC" container and router for this framework.
 |
 */
+<<<<<<< HEAD
 
 $app = new Laravel\Lumen\Application(
     realpath(__DIR__.'/../')
@@ -27,6 +35,13 @@ $app->withFacades();
 
 $app->withEloquent();
 
+=======
+$app = new Laravel\Lumen\Application(
+    realpath(__DIR__.'/../')
+);
+$app->withFacades();
+$app->withEloquent();
+>>>>>>> d0eaaf208f1cddcc633fcdc177837f439f942b1b
 /*
 |--------------------------------------------------------------------------
 | Register Container Bindings
@@ -37,17 +52,26 @@ $app->withEloquent();
 | your own bindings here if you like or you can make another file.
 |
 */
+<<<<<<< HEAD
 
+=======
+>>>>>>> d0eaaf208f1cddcc633fcdc177837f439f942b1b
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
     App\Exceptions\Handler::class
 );
+<<<<<<< HEAD
 
+=======
+>>>>>>> d0eaaf208f1cddcc633fcdc177837f439f942b1b
 $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
     App\Console\Kernel::class
 );
+<<<<<<< HEAD
 
+=======
+>>>>>>> d0eaaf208f1cddcc633fcdc177837f439f942b1b
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
@@ -58,6 +82,7 @@ $app->singleton(
 | route or middleware that'll be assigned to some specific routes.
 |
 */
+<<<<<<< HEAD
 
 // $app->middleware([
 //    App\Http\Middleware\ExampleMiddleware::class
@@ -67,6 +92,14 @@ $app->singleton(
 //     'auth' => App\Http\Middleware\Authenticate::class,
 // ]);
 
+=======
+$app->middleware([
+    App\Http\Middleware\CorsMiddleware::class
+]);
+$app->routeMiddleware([
+    'auth' => App\Http\Middleware\Authenticate::class,
+]);
+>>>>>>> d0eaaf208f1cddcc633fcdc177837f439f942b1b
 /*
 |--------------------------------------------------------------------------
 | Register Service Providers
@@ -77,11 +110,19 @@ $app->singleton(
 | totally optional, so you are not required to uncomment this line.
 |
 */
+<<<<<<< HEAD
 
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
+=======
+$app->register(App\Providers\AppServiceProvider::class);
+$app->register(App\Providers\AuthServiceProvider::class);
+$app->register(App\Providers\CatchAllOptionsRequestsProvider::class);
+//$app->register(Irazasyed\JwtAuthGuard\JwtAuthGuardServiceProvider::class);
+// $app->register(App\Providers\EventServiceProvider::class);
+>>>>>>> d0eaaf208f1cddcc633fcdc177837f439f942b1b
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
@@ -92,6 +133,7 @@ $app->singleton(
 | can respond to, as well as the controllers that may handle them.
 |
 */
+<<<<<<< HEAD
 
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
@@ -100,3 +142,9 @@ $app->router->group([
 });
 
 return $app;
+=======
+$app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
+    require __DIR__.'/../routes/web.php';
+});
+return $app;
+>>>>>>> d0eaaf208f1cddcc633fcdc177837f439f942b1b

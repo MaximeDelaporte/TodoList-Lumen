@@ -4,8 +4,8 @@ window.navigation = window.navigation || {},
             constants: {
                 sectionTemplate: '.section-template',
                 contentContainer: '#wrapper',
-                startSectionMenuItem: '#welcome-topbar',
-                startSection: '#welcome'
+                startSectionMenuItem: '#login-topbar',
+                startSection: '#login'
             },
 
             importSectionsToDOM: function() {

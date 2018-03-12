@@ -61,4 +61,51 @@ class UsersController extends Controller
             return response()->json(['status' => 'fail'], 401);
         }
     }
+    public function update(Request $request, $token)
+    {
+        $this->validate($request, [
+            'oldpassword' => 'required'
+        ]);
+        $email = Users::find($request->input('email'));
+        $passVerif = Hash::make($request->input('oldpassword'));
+        $user = Users::where([['api_key','=', $request->input('Authorization')],['password','=', $passVerif]])->exists();
+        if ($user == true){
+            $pass = Hash::make($request->input('password'));
+            if($request->input('name') != "" && $request->input('password') !="" && isset($email) == false){
+                if($user->fill([
+                    'password' => $pass,
+                    'name' => $request->input('name'),
+                    'email' => $request->input('email')
+                ])->save()){
+                    return response()->json(['status' => 'success'],200);
+                }
+            }
+            elseif ($request->input('name') != "" && $request->input('password') !="")
+            {
+                if($user->fill([
+                    'password' => $pass,
+                    'name' => $request->input('name'),
+                ])->save()){
+                    return response()->json(['status' => 'success'], 200);
+                }
+            }
+            elseif ($request->input('name') != "")
+            {
+                if($user->fill([
+                    'name' => $request->input('name'),
+                ])->save()){
+                    return response()->json(['status' => 'success'],200);
+                }
+            }
+            elseif ($request->input('password') != "")
+            {
+                if($user->fill([
+                    'password' => $pass,
+                ])->save()){
+                    return response()->json(['status' => 'success']);
+                }
+            }
+        }
+        return response()->json(['status' => 'failed'],401);
+    }
 }

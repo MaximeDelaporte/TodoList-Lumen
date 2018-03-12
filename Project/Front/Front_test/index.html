@@ -8,35 +8,78 @@
     </head>
     <body>
         <main>
-            <h1>DESBOUQUINN Library</h1>
+            <h1>TO DO APP</h1>
+            <!--Login-->
             <section data-use="connection">        
                 <input type='email'  placeholder="Email" data-use="email">
                 <input type='password' placeholder="Password" data-use="password">
                 <input type="submit" value='login' data-action="connect">
             </section>
+            <!--end of Login-->
+
             <div data-use="result"></div>
             <p data-use="account">New employee, create a new account</p>
+
+            <!--Sign Up-->
             <section data-use="new" class="hidden">
-                <input type='text'  placeholder="Name" data-use="newname">
-                <input type='text' value="" placeholder="Email" data-use="newemail">
-                <input type='password' value="" placeholder="Password" data-use="newpassword">
+                <input type='text'  placeholder="Name" data-use="newName">
+                <input type='text' value="" placeholder="Email" data-use="newEmail">
+                <input type='password' value="" placeholder="Password" data-use="newPassword">
                 <input type="submit" value='Create Account' data-action="subscribe">
             </section>
+            <!--End of Sign Up-->
+
+            <!--Edit Profile (doesn't work for now)-->
+            <section data-use="editProfile" class="hidden">
+                <h2>Modifying your account setting</h2>
+                <input type='text'  placeholder="New Name" data-use="editName">
+                <input type='email' value="" placeholder="Type here your new email" data-use="editEmail">
+                <input type='password' value="" placeholder="Old Password" data-use="passwordOld">
+                <input type='password' value="" placeholder="New passwordPassword" data-use="passwordNew">
+                <input type="submit" value='Edit Account' data-action="editProfile">
+            </section>
+            <!--End of Edit Profile-->
+
+            <!--Room actions-->
             <section data-use="room" class="hidden">
-                <input type='text'  placeholder="Name of your room" data-use="newroomname">
+                <!--Creating Room-->
+                <h2>Create Your Room</h2>
+                <input type='text'  placeholder="Name of your room" data-use="newRoomName">
                 <input type="submit" value='Create Room' data-action="newRoom">
-                <input type='email' value="" placeholder="Find someone to work with" data-use="addusers">
-                <input type="submit" value="Add Coworker" data-action="adduser">
+                <!--End of Creating Room-->
+
+                <!--Add Coworker-->
+                <h2>Add Coworker</h2>
+                <input type='email' value="" placeholder="Find someone to work with" data-use="addUsers">
+                <input type="submit" value="Add Coworker" data-action="addUser">
+                <!--End of Add Coworker-->
+
+                <h2>View</h2>
                 <input type="submit" value="Show Users of current room" data-action="showUsers">
                 <input type='submit' value="Show current room" data-action="showRoom">
                 <input type='submit' value="Show Tasks" data-action="showTasks">
+                <input type="submit" value="Show all User Rooms" data-action="getRooms">
 
+                <!--Delete Room-->
+                <h2>Delete Room</h2>
+                <input type="text" value="" placeholder="Id Room to Delete" data-use="deleteRoom">
+                <input type="button" value="Delete Room" data-action="deleteRoom">
+                <!--End of Delete Room-->
 
             </section>
-            <input type="submit" value='Disconnect' data-action="disconnect" class="hidden">
+            <!--End of Room actions-->
+
+
+
+            <!--To Do actions-->
             <section data-use="task" class="hidden">
-                <input type="button" id="deleteAcc" value="Delete">
-                <input type="submit" value="Rooms" data-action="getRooms">
+
+                <!--Delete To Do-->
+                <input type="text" value="" placeholder="Id ToDo to Delete" data-use="deleteToDo">
+                <input type="button" value="Delete ToDo" data-action="deleteToDo">
+                <!--End of Delete To Do-->
+
+                <!--Add To Do-->
                 <div class="addTask">
                     <p>New Task ? Write it here</p>
                     <input type='text' placeholder="To do" data-use="newTodo">
@@ -44,7 +87,27 @@
                     <input type='text' placeholder="Category" data-use="newCategory">
                     <input type="submit" value="Add" data-action="newTask">
                 </div>
+                <!--End of Add To Do-->
+
+                <!--Modifying To Do (currently not working)-->
+                <div class="ModifTask">
+                    <p>Modif Task ? Write it here</p>
+                    <input type='text' placeholder="Id ToDo" data-use="searchTodo">
+                    <input type='text' placeholder="To do" data-use="newTodoName">
+                    <input type='text' placeholder="Description" data-use="newToDoDescription">
+                    <input type='text' placeholder="Category" data-use="newToDoCategory">
+                    <input type="submit" value="Modif ToDo" data-action="modifTask">
+                </div>
+                <!--End of Modifying To Do-->
+
             </section>
+            <!--End of To Do actions-->
+
+            <!--Disconnection-->
+            <h2>Disconnect</h2>
+            <input type="submit" value='Disconnect' data-action="disconnect" class="hidden">
+            <!--End of Disconnection-->
+
         </main>
         <script type="text/javascript" src="./js/vendor/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="./js/script.js" ></script> 

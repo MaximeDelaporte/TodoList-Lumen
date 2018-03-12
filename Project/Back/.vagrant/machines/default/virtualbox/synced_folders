@@ -1,5 +1,0 @@
-<<<<<<< HEAD
-{"virtualbox":{"/var/www/html":{"guestpath":"/var/www/html","hostpath":"/home/apprenant/Bureau/Project_Team/Test git/test/Tuto Auth/Back/data","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/apprenant/Bureau/Project_Team/Test git/test/Tuto Auth/Back","disabled":false,"__vagrantfile":true}}}
-=======
-{"virtualbox":{"/var/www/html":{"guestpath":"/var/www/html","hostpath":"/home/apprenant/Bureau/Project_Team/Test git/test/Project/Back/data","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/apprenant/Bureau/Project_Team/Test git/test/Project/Back","disabled":false,"__vagrantfile":true}}}
->>>>>>> d0eaaf208f1cddcc633fcdc177837f439f942b1b

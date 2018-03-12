@@ -23,12 +23,17 @@ class UsersController extends Controller
             'password' => 'required'
         ]);
         $user = Users::where('email', $request->input('email'))->first();
-        if(Hash::check($request->input('password'), $user->password)){
-            $apikey = base64_encode(str_random(40));
-            Users::where('email', $request->input('email'))->update(['api_key' => "$apikey"]);;
-            $username = Users::where('api_key','=',$apikey)->value('name');
-            return response()->json(['status' => 'success','api_key' => $apikey,'username'=> $username]);
-        }else{
+        if ($user != ""){
+            if(Hash::check($request->input('password'), $user->password)){
+                $apikey = base64_encode(str_random(40));
+                Users::where('email', $request->input('email'))->update(['api_key' => "$apikey"]);;
+                $username = Users::where('api_key','=',$apikey)->value('name');
+                return response()->json(['status' => 'success','api_key' => $apikey,'username'=> $username]);
+            }else{
+                return response()->json(['status' => 'fail'],401);
+            }
+        }
+        else {
             return response()->json(['status' => 'fail'],401);
         }
     }
@@ -66,46 +71,72 @@ class UsersController extends Controller
         $this->validate($request, [
             'oldpassword' => 'required'
         ]);
-        $email = Users::find($request->input('email'));
-        $passVerif = Hash::make($request->input('oldpassword'));
-        $user = Users::where([['api_key','=', $request->input('Authorization')],['password','=', $passVerif]])->exists();
-        if ($user == true){
+        $user = Users::where('api_key','=', $request->input('Authorization'))->first();
+        $email = Users::where('email','=',$request->input('email'))->exists();
+
+        $passVerif = Hash::check($request->input('oldpassword'), $user->password);
+
+
+
+
+
+        if ($passVerif == true){
             $pass = Hash::make($request->input('password'));
-            if($request->input('name') != "" && $request->input('password') !="" && isset($email) == false){
-                if($user->fill([
+            if($request->input('name') != "" && $request->input('password') !="" && $email == false){
+                if($user->update([
                     'password' => $pass,
                     'name' => $request->input('name'),
                     'email' => $request->input('email')
-                ])->save()){
+                ])){
                     return response()->json(['status' => 'success'],200);
                 }
             }
-            elseif ($request->input('name') != "" && $request->input('password') !="")
+            elseif ($request->input('name') != "" && $request->input('password') != "" && $email == true)
             {
-                if($user->fill([
+                if($user->update([
                     'password' => $pass,
                     'name' => $request->input('name'),
-                ])->save()){
+                ])){
+                    return response()->json(['status' => 'success'], 200);
+                }
+            }
+            elseif ($request->input('name') != "" && $email == false)
+            {
+                if($user->update([
+                    'email' => $request->input('email'),
+                    'name' => $request->input('name'),
+                ])){
                     return response()->json(['status' => 'success'], 200);
                 }
             }
             elseif ($request->input('name') != "")
             {
-                if($user->fill([
+                if($user->update([
                     'name' => $request->input('name'),
-                ])->save()){
+                ])){
                     return response()->json(['status' => 'success'],200);
                 }
             }
             elseif ($request->input('password') != "")
             {
-                if($user->fill([
+                if($user->update([
                     'password' => $pass,
-                ])->save()){
+                ])){
                     return response()->json(['status' => 'success']);
                 }
             }
+            elseif ($email == false)
+            {
+                if($user->update([
+                    'email' => $request->input('email'),
+                ])){
+                    return response()->json(['status' => 'success']);
+                }
+            }
+            else{
+                return response()->json($email, $user);
+            }
         }
-        return response()->json(['status' => 'failed'],401);
+        return response()->json($user);
     }
 }

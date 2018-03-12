@@ -31,7 +31,7 @@
 
             <!--Edit Profile (doesn't work for now)-->
             <section data-use="editProfile" class="hidden">
-                <h2>Modifying your account setting</h2>
+                <p>Modifying your account setting</p>
                 <input type='text'  placeholder="New Name" data-use="editName">
                 <input type='email' value="" placeholder="Type here your new email" data-use="editEmail">
                 <input type='password' value="" placeholder="Old Password" data-use="passwordOld">
@@ -43,25 +43,32 @@
             <!--Room actions-->
             <section data-use="room" class="hidden">
                 <!--Creating Room-->
-                <h2>Create Your Room</h2>
+                <p>Create Your Room</p>
                 <input type='text'  placeholder="Name of your room" data-use="newRoomName">
                 <input type="submit" value='Create Room' data-action="newRoom">
                 <!--End of Creating Room-->
 
+                <!--Editing Room-->
+                <p>Edit Your Room</p>
+                <input type="text" placeholder="Old Name of your room" data-use="roomNameOld">
+                <input type='text'  placeholder="New Name of your room" data-use="roomNameNew">
+                <input type="submit" value='Edit Room' data-action="editRoom">
+                <!--End of Editing Room-->
+
                 <!--Add Coworker-->
-                <h2>Add Coworker</h2>
+                <p>Add Coworker</p>
                 <input type='email' value="" placeholder="Find someone to work with" data-use="addUsers">
                 <input type="submit" value="Add Coworker" data-action="addUser">
                 <!--End of Add Coworker-->
 
-                <h2>View</h2>
+                <p>View</p>
                 <input type="submit" value="Show Users of current room" data-action="showUsers">
                 <input type='submit' value="Show current room" data-action="showRoom">
                 <input type='submit' value="Show Tasks" data-action="showTasks">
                 <input type="submit" value="Show all User Rooms" data-action="getRooms">
 
                 <!--Delete Room-->
-                <h2>Delete Room</h2>
+                <p>Delete Room</p>
                 <input type="text" value="" placeholder="Id Room to Delete" data-use="deleteRoom">
                 <input type="button" value="Delete Room" data-action="deleteRoom">
                 <!--End of Delete Room-->
@@ -75,6 +82,7 @@
             <section data-use="task" class="hidden">
 
                 <!--Delete To Do-->
+                <p>Delete To Do</p>
                 <input type="text" value="" placeholder="Id ToDo to Delete" data-use="deleteToDo">
                 <input type="button" value="Delete ToDo" data-action="deleteToDo">
                 <!--End of Delete To Do-->

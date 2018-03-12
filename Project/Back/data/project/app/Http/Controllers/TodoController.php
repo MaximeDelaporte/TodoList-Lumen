@@ -83,9 +83,7 @@ class TodoController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'todo' => 'filled',
-            'description' => 'filled',
-            'category' => 'filled'
+            'room_id' => 'filled'
         ]);
         $todo = Todo::find($id);
         if($todo->fill($request->all())->save()){

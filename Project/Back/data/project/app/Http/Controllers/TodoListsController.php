@@ -26,7 +26,7 @@ class TodoListsController extends Controller
     public function index(Request $request)
     {
         $room = $request->input('room_id');
-        $todo = TodoLists::join('rooms','rooms.id','=','todo_list.room_id')->select('*')->where('rooms.id','=', $room)->get();
+        $todo = TodoLists::where('room_id','=', $room)->get();
         return response()->json(['status' => 'success','result' => $todo]);
     }
     /**
@@ -96,8 +96,8 @@ class TodoListsController extends Controller
      */
     public function destroy($id)
     {
-        if(TodoLists::where('id','=', $id)->delete()){
-            return response()->json(['status' => 'success'],200);
+        if(TodoLists::where('id','=',$id)->delete()){
+            return response()->json(['status' => 'success']);
         }
         return response()->json(['status' => 'failed'],401);
     }

@@ -29,7 +29,7 @@ $app->group(['prefix' => 'api/'], function ($app) {
     $app->get('room/list/{id}', 'TodoListsController@show');
     $app->post('room/list/', 'TodoListsController@store');
     $app->post('room/list/{id}/edit', 'TodoListsController@update');
-    $app->post('room/list/{id}/delete', 'TodoListsController@destroy');
+    $app->get('room/list/{id}/delete', 'TodoListsController@destroy');
     $app->post('todo/','TodoController@store');
     $app->get('todo/', 'TodoController@index');
     $app->get('todo/{id}/', 'TodoController@show');

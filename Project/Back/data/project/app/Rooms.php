@@ -11,9 +11,9 @@ class Rooms extends Model
     * Get Todo of Rooms
     *
     */
-    public function todo()
+    public function todolists()
     {
-        return $this->hasMany('App\Todo','room_id');
+        return $this->hasMany('App\TodoLists','room_id');
     }
     public function user()
     {

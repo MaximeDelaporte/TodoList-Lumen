@@ -18,10 +18,6 @@ class Todo extends Migration
             $table->string('description');
             $table->string('category');
             $table->boolean('finished');
-<<<<<<< HEAD
-            $table->integer('room_id')->unsigned();
-=======
->>>>>>> 8e5b38b7c43aa4ad1503ae229dbd67efa042975e
             $table->integer('todo_id')->unsigned();
             $table->timestamps();
             $table->foreign('todo_id')->references('id')->on('todo_lists')->onDelete('cascade');

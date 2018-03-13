@@ -24,16 +24,10 @@ class TodoController extends Controller
      */
     public function index(Request $request)
     {
-<<<<<<< HEAD
-        $room_id = $request->input('room_id');
-        $todos = Todo::join('rooms','rooms.id','=','todo.room_id')->select('*')->where('rooms.id','=', $room_id)->groupBy('category')->get();
-        return response()->json(['status' => 'success','result' => $todos]);
-=======
         $todo_id = $request->input('todo_id');
      
         $todo = Todo::join('todo_lists','todo_lists.id','=','todo.todo_id')->select('*')->where('todo_lists.id','=', $todo_id)->groupBy('category')->get();
         return response()->json(['status' => 'success','result' => $todo]);
->>>>>>> 8e5b38b7c43aa4ad1503ae229dbd67efa042975e
     }
     /**
      * Store a newly created resource in storage.

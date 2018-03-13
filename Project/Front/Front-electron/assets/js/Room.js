@@ -28,7 +28,7 @@ $(document).ready(function(){
     });
 
     //Show Current Room
-    $('[data-section="mytodolist"]').on('click', function(){
+    $('[data-action="showRoom"]').on('click', function(){
         debugger;
         let dataRoom_id = $('[data-value]')[0].value;
         localStorage.setItem('currentRoom', dataRoom_id);
@@ -37,15 +37,14 @@ $(document).ready(function(){
         })
     });
 
+
     //Get All Rooms where User is authorized
-    $('[data-action="getRooms"]').on('click', function(){
+    $('[data-action="getRooms"]').ready( function(){
+        debugger;
         $.get("http://192.168.33.10:8000/api/room/all",{ Authorization:localStorage.getItem('token')},function(data){
-            let htmlRenderResult = "";
-            if(data.error){
-                console.log(data);
-            }
-            else
-            {
+            debugger;
+            for(let i = 0; i < data.result.length;i++) {
+                $('[data-action="getRooms"]').append('<li class="room"><a href="#" data-section="mytodolist" data-action="showRoom" data-use="deleteRoom" data-value="' + data.result[i].room_id + '">' + data.result[i].name + '</a><b id="removeRoom" data-action="deleteRoom">X</b></li>');
 
             }
         });
@@ -54,6 +53,14 @@ $(document).ready(function(){
     // Delete a room
     $(document).on('click', '#removeRoom',function(){
         $(this).parent().fadeToggle();
+    });
+    //Delete Room with Id
+    $('[data-action="deleteRoom"]').on('click', function(){
+        debugger;
+        let $id = $('[data-use="deleteRoom"]')[0].value;
+        $.post("http://192.168.33.10:8000/api/room/delete/" + $id +"/", {Authorization:localStorage.getItem('token')},function(data){
+
+        });
     });
 
     //SidebarMenuRoom

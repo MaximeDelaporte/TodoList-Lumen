@@ -5,11 +5,11 @@ class Todo extends Model
 {
     //
     protected $table = 'todo';
-    protected $fillable = ['todo','category','room_id','description','finished'];
-    protected $hidden = ['room_id'];
+    protected $fillable = ['todo','category','todo_id','description','finished'];
+    protected $hidden = [];
 
-    public function room()
+    public function todolist()
     {
-        return $this->belongTo(Rooms::class);
+        return $this->belongTo(TodoLists::class);
     }
 }

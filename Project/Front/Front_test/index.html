@@ -76,6 +76,17 @@
             </section>
             <!--End of Room actions-->
 
+            <!--To Do List actions-->
+            <section data-use="list" class="hidden">
+
+                <!--Create To Do List-->
+                <p>Create To do List</p>
+                <input type="text" value="" placeholder="Name of To Do" data-use="createList">
+                <input type="button" value="Create To Do List" data-action="createList">
+                <!--End ofCreate To Do List-->
+
+            </section>
+            <!--End of To Do List actions-->
 
 
             <!--To Do actions-->
@@ -83,8 +94,8 @@
 
                 <!--Delete To Do-->
                 <p>Delete To Do</p>
-                <input type="text" value="" placeholder="Id ToDo to Delete" data-use="deleteToDo">
-                <input type="button" value="Delete ToDo" data-action="deleteToDo">
+                <input type="text" value="" placeholder="Id ToDo to Delete" data-use="deleteTodo">
+                <input type="button" value="Delete ToDo" data-action="deleteTodo">
                 <!--End of Delete To Do-->
 
                 <!--Add To Do-->
@@ -97,17 +108,24 @@
                 </div>
                 <!--End of Add To Do-->
 
-                <!--Modifying To Do (currently not working)-->
+                <!--Modifying To Do-->
                 <div class="ModifTask">
                     <p>Modif Task ? Write it here</p>
                     <input type='text' placeholder="Id ToDo" data-use="searchTodo">
                     <input type='text' placeholder="To do" data-use="newTodoName">
-                    <input type='text' placeholder="Description" data-use="newToDoDescription">
-                    <input type='text' placeholder="Category" data-use="newToDoCategory">
+                    <input type='text' placeholder="Description" data-use="newTodoDescription">
+                    <input type='text' placeholder="Category" data-use="newTodoCategory">
                     <input type="submit" value="Modif ToDo" data-action="modifTask">
                 </div>
                 <!--End of Modifying To Do-->
-
+                <!-- Set To Do as finished-->
+                <div class="finishedTask">
+                    <p>Set To Do as Finished</p>
+                    <input type='text' placeholder="Id ToDo" data-use="searchFinishedTodo">
+                    <input type='checkbox' value="" data-use="searchTodo">
+                    <input type="submit" value="Finished ToDo" data-action="endTask">
+                </div>
+                <!--End of Set To Do as finished-->
             </section>
             <!--End of To Do actions-->
 

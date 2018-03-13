@@ -24,9 +24,10 @@ class TodoController extends Controller
      */
     public function index(Request $request)
     {
-        $room_id = $request->input('room_id');
-        $todos = Todo::join('rooms','rooms.id','=','todo.room_id')->select('*')->where('rooms.id','=', $room_id)->get();
-        return response()->json(['status' => 'success','result' => $todos]);
+        $todo_id = $request->input('todo_id');
+     
+        $todo = Todo::join('todo_lists','todo_lists.id','=','todo.todo_id')->select('*')->where('todo_lists.id','=', $todo_id)->groupBy('category')->get();
+        return response()->json(['status' => 'success','result' => $todo]);
     }
     /**
      * Store a newly created resource in storage.
@@ -38,13 +39,18 @@ class TodoController extends Controller
     {
         $this->validate($request, [
             'todo' => 'required',
-            'room_id' => 'required'
+            'todo_id' => 'required'
         ]);
         $user = Tasklists::join('users','tasklists.user_id','users.id')->where('users.api_key','=',$request->input('Authorization'))->get();
-        $request->merge(['finished'=>false]);
 
         if($user)
-            if(Todo::create($request->all())){
+            if(Todo::Create([
+                'todo' => $request->input('todo'),
+                'description'=> $request->input('description'),
+                'category' => $request->input('category'),
+                'finished' => false,
+                'todo_id' =>$request->input('todo_id')
+                ])->save()){
             return response()->json(['status' => 'success']);
         }else{
             return response()->json(['status' => 'fail']);
@@ -58,7 +64,7 @@ class TodoController extends Controller
      */
     public function show($id)
     {
-        $todo = Todo::where('room_id', $id)->get();
+        $todo = Todo::where('todo_id', $id)->get();
         return response()->json($todo);
 
     }
@@ -83,13 +89,61 @@ class TodoController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'room_id' => 'filled'
+            'todo_id' => 'filled'
         ]);
-        $todo = Todo::find($id);
-        if($todo->fill($request->all())->save()){
-            return response()->json(['status' => 'success']);
+        $todo = Todo::where([['id','=',$id],['todo','=', $request->input('todo_id')]]);
+        if ($request->input('todo') && $request->input('description') && $request->input('category')){
+            if($todo->update(['todo' => $request->input('todo'), 'description' => $request->input('description'), 'category'=> $request->input('category')])){
+                return response()->json(['status' => 'success'],200);
+            }
         }
-        return response()->json(['status' => 'failed']);
+        elseif ($request->input('todo') && $request->input('description')){
+            if($todo->update(['todo' => $request->input('todo'), 'description' => $request->input('description')])){
+                return response()->json(['status' => 'success'],200);
+            }
+        }
+        elseif ($request->input('todo') &&  $request->input('category')){
+            if($todo->update(['todo' => $request->input('todo'), 'category'=> $request->input('category')])){
+                return response()->json(['status' => 'success'],200);
+            }
+        }
+        elseif ( $request->input('description') && $request->input('category')){
+            if($todo->update(['description' => $request->input('description'), 'category'=> $request->input('category')])){
+                return response()->json(['status' => 'success'],200);
+            }
+        }
+        elseif ($request->input('todo')){
+            if($todo->update(['todo' => $request->input('todo')])){
+                return response()->json(['status' => 'success'],200);
+            }
+        }
+        elseif ($request->input('description')){
+            if($todo->update([ 'description' => $request->input('description')])){
+                return response()->json(['status' => 'success'],200);
+            }
+        }
+        elseif ($request->input('category')){
+            if($todo->update(['category'=> $request->input('category')])){
+                return response()->json(['status' => 'success'],200);
+            }
+        }
+
+        return response()->json(['status' => 'failed'],401);
+    }
+    public function finished(Request $request, $id)
+    {
+        $todo = Todo::where('id','=', $id);
+        if ($request->input('finished')== true){
+            if($todo->update(['finished','=',true])){
+                return response()->json(['status' => 'success'],200);
+            }
+        }
+        elseif ($request->input('finished')== false){
+            if($todo->update(['finished','=',false])){
+                return response()->json(['status' => 'success'],200);
+            }
+        }
+        return response()->json(['status' => 'failed'],401);
     }
     /**
      * Remove the specified resource from storage.

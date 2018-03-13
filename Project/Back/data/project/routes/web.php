@@ -25,9 +25,15 @@ $app->group(['prefix' => 'api/'], function ($app) {
     $app->post('room/users/add/', 'TasklistsController@adduser');
     $app->post('room/{name}/settings/','RoomsController@update');
     $app->post('room/delete/{id}/', 'RoomsController@destroy');
+    $app->get('room/list/all', 'TodoListsController@index');
+    $app->get('room/list/{id}', 'TodoListsController@show');
+    $app->post('room/list/', 'TodoListsController@store');
+    $app->post('room/list/{id}/edit', 'TodoListsController@update');
+    $app->post('room/list/{id}/delete', 'TodoListsController@destroy');
     $app->post('todo/','TodoController@store');
     $app->get('todo/', 'TodoController@index');
     $app->get('todo/{id}/', 'TodoController@show');
     $app->post('todo/{id}/edit', 'TodoController@update');
-    $app->delete('todo/{id}/', 'TodoController@destroy');
+    $app->post('todo/{id}/finished', 'TodoController@finished');
+    $app->get('todo/{id}/delete', 'TodoController@destroy');
 });

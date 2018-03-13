@@ -25,7 +25,7 @@ class TodoController extends Controller
     public function index(Request $request)
     {
         $room_id = $request->input('room_id');
-        $todos = Todo::join('rooms','rooms.id','=','todo.room_id')->select('*')->where('rooms.id','=', $room_id)->get();
+        $todos = Todo::join('rooms','rooms.id','=','todo.room_id')->select('*')->where('rooms.id','=', $room_id)->groupBy('category')->get();
         return response()->json(['status' => 'success','result' => $todos]);
     }
     /**

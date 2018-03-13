@@ -42,3 +42,9 @@ echo "CLONE LASTEST PROJECT BACK FROM DEV"
    git clone  https://github.com/MaximeDelaporte/TodoList-Lumen/tree/dev/Project/Back/data/project
    cd project
    composer install
+   mysql -uroot -p0000
+   create database todo_db;
+   exit
+   php artisan migrate
+   php artisan db:seed
+   vagrant ssh

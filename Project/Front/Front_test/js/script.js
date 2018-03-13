@@ -103,7 +103,7 @@ $(document).ready(function(){
         var email = $('[data-use="addUsers"]')[0].value;
         $.post("http://192.168.33.10:8000/api/room/users/add",{room: localStorage.getItem('currentRoom'), users: email, Authorization: localStorage.getItem('token')}, function(data){
         });
-    });
+    })
 
     //Create New Room with Name
     //Adding in Room.js

@@ -1,8 +1,8 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #eeeeee;
-  font-family: "Roboto", sans-serif;
+  background-color: lightgrey;
+  font-family: sans-serif;
 
 }
 
@@ -41,10 +41,10 @@ body {
 }
 
 .form button:hover {
-  background: #18392b;
+  background: #151718;
   margin-top: 15px;
   padding: 5px 15px;
-  color: whitesmoke;
+  color: white;
   outline: none;
   border: none;
   transition-property: background-color;
@@ -58,7 +58,7 @@ body {
   text-align: center;
   border: none;
   border-style: inherit;
-  border-bottom: .5px solid #18392b;
+  border-bottom: .5px solid #151718;
   display: flex;
   flex-direction: column;
   width: 25%;
@@ -67,13 +67,13 @@ body {
 }
 
 [type="text"]:focus {
-  color: #18392b;
+  color: #151718;
   outline: none;
-  border-bottom: .5px solid tomato;
+  border-bottom: .5px solid darkred;
 }
 
 [type="text"]:hover {
-  border-bottom: .5px solid tomato;
+  border-bottom: .5px solid darkred;
 }
 
 [type="password"] {
@@ -81,7 +81,7 @@ body {
   text-align: center;
   border: none;
   border-style: hidden;
-  border-bottom: .5px solid #18392b;
+  border-bottom: .5px solid #151718;
   display: flex;
   flex-direction: column;
   width: 25%;
@@ -90,13 +90,13 @@ body {
 }
 
 [type="password"]:focus {
-  color: #18392b;
+  color: #151718;
   outline: none;
-  border-bottom: .5px solid tomato;
+  border-bottom: .5px solid darkred;
 }
 
 [type="password"]:hover{
-  border-bottom: .5px solid tomato;
+  border-bottom: .5px solid darkred;
 }
 
 [type="email"]{
@@ -104,7 +104,7 @@ body {
   text-align: center;
   border: none;
   border-style: hidden;
-  border-bottom: .5px solid #18392b;
+  border-bottom: .5px solid #151718;
   display: flex;
   flex-direction: column;
   width: 25%;
@@ -113,17 +113,17 @@ body {
 }
 
 [type="email"]:focus {
-  color: #18392b;
+  color: #151718;
   outline: none;
-  border-bottom: .5px solid tomato;
+  border-bottom: .5px solid darkred;
 }
 
 [type="email"]:hover{
-  border-bottom: .5px solid tomato;
+  border-bottom: .5px solid darkred;
 }
 
 ::placeholder {
-  color: tomato;
+  color: darkred;
 }
 
 
@@ -137,11 +137,11 @@ body {
   outline: none;
   text-transform: uppercase;
   background-color: transparent;
-  border-bottom: .5px solid #18392b;
+  border-bottom: .5px solid #151718;
 }
 
 [type="create"]:hover {
-  background: #18392b;
+  background: #151718;
   margin-top: 15px;
   padding: 5px 15px;
   color: whitesmoke;
@@ -160,11 +160,11 @@ body {
 
 .message a{
   text-decoration: none;
-  color: #18392b;
+  color: darkred;
 }
 
 .message a:hover{
-  color: tomato;
+  color: #151718;
 }
 
 .form .register-form{

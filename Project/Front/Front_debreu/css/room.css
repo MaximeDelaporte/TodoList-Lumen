@@ -1,141 +1,210 @@
-body {
-  margin: 0;
-  padding: 0;
+body
+{
+	margin: 0;
+	padding: 0;
+  font-family: sans-serif;
 }
 
+.gauche
+{
+	display: inline-block;
+	flex-direction: column;
+	margin: 0;
+}
 
 /* ----------- PROFILE ----------- */
-#profile{
-  background-color: lightgrey;
-  margin: none;
-  padding: 10px 15px 76px 15px;
-  position: relative;
-  display: block;
-  flex-direction: column;
+.sidenav
+{
+	background-color: #151718;
+	display: block;
+	width: 200px;
+	height: auto;
+	flex-direction: row;
+	top: 0;
+	position: relative;
+	padding-bottom: 35px;
+	padding-top: 35px;
 }
 
-h3 {
-margin: none;
+.sidenav a
+{
+	padding: 10px 20px 30px 10px;
+	text-decoration: none;
+	color: lightgrey;
+	display: block;
+	background-color: #151718;
+	text-align: center;
+	text-transform: uppercase;
 }
 
+.sidenav a:hover
+{
+	color: white;
+}
 
+img
+{
+	padding-bottom: 50px;
+	display: block;
+	margin: auto;
+	width: 50%;
+	height: 50%;
+}
 
 /* ----------- SIDEBAR ----------- */
-#sidebar {
-  background-color: #151718;
-  width: 200px;
-  height: 100%;
-  display: block;
-  flex-direction: row;
-  flex-wrap: wrap;
-  position: absolute;
-  left: -200px;
-  top: 0;
-  transition: left 0.3s linear;
-  margin-top: 108px;
+#sidebar
+{
+	background-color: #151718;
+	width: 200px;
+	height: auto;
+	display: block;
+	flex-direction: row;
+	flex-wrap: wrap;
+	position: absolute;
+	left: -200px;
+	transition: left 0.3s linear;
 }
 
-#sidebar.visible{
-  left: 0px;
-  transition: left 0.3s linear;
+#sidebar.visible
+{
+	left: 0px;
+	transition: left 0.3s linear;
 }
 
-ul{
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+ul
+{
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
 
-li {
-  display: flex;
-  flex-wrap: wrap;
+li
+{
+	display: flex;
+	flex-wrap: wrap;
 }
 
-
-ul li b{
-  list-style: none;
-  display: block;
-  flex-direction: row;
-  flex-wrap: wrap;
+ul li b
+{
+	list-style: none;
+	display: block;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
 
-ul li a {
-  background-color: #1c1e1f;
-  color: lightgrey;
-  border-bottom: 1px solid #111;
-  display: block;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 140px;
-  padding: 10px;
-  text-decoration: none;
-  text-align: center;
+ul li a
+{
+	background-color: #1c1e1f;
+	color: lightgrey;
+	border-bottom: 1px solid #111;
+	display: block;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 140px;
+	padding: 10px;
+	text-decoration: none;
+	text-align: center;
 }
 
-ul li a:hover {
-  color: white;
+ul li a:hover
+{
+	color: white;
 }
 
 /* bouton supprimer */
-b {
-  font-family: sans-serif;
-  background-color: darkred;
-  color: lightgrey;
-  border-bottom: 1px solid #111;
-  display: block;
-  width: 20px;
-  padding: 10px;
-  text-decoration: none;
-  text-align: center;
+b
+{
+	font-family: sans-serif;
+	background-color: darkred;
+	color: lightgrey;
+	border-bottom: 1px solid #111;
+	display: block;
+	width: 20px;
+	padding: 10px;
+	text-decoration: none;
+	text-align: center;
+	margin: 0;
+	cursor: pointer;
+	z-index: 1;
+}
+
+b:hover
+{
+	color: white;
+	background-color: red;
+	transition-duration: 0.4s;
+}
+
+/* ----------- SIDEBAR MENU  btn -----------*/
+#sidebar-btn
+{
+	width: auto;
+	height: 15px;
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	right: -62px;
+	padding: 0;
+	align-items: center;
+}
+
+#sidebar-btn p
+{
+	background-color: #151718;
+	color: lightgrey;
+	padding: 10px;
   margin: 0;
-  cursor: pointer;
-  font-size: 10px;
-  z-index: 1;
 }
 
-b:hover {
-  color: white;
-  background-color: red;
-  transition-duration: 0.4s;
-}
-
-/* ----------- BURGER MENU  btn -----------*/
-
-#sidebar-btn{
-  width: auto;
-  height: 15px;
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  right: -59px;
-  padding: 0;
-  align-items: center;
-}
-
-#sidebar-btn p {
-  background-color: #151718;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  color: lightgrey;
-  padding: 10px;
-}
-
-#sidebar-btn p:hover {
-  color: white;
+#sidebar-btn p:hover
+{
+	color: white;
 }
 
 /* ----------- CONTENT ----------- */
-
-.content {
-  margin: 50px 220px 50px 220px;
-  display: block;
-  text-align: center;
+.content
+{
+  display: inline-block;
+  padding: 10px;
+  margin-top: 150px;
+  margin-left: 100px;
+  margin-right: auto;
 }
 
-[input type="button"]{
-  outline: none;
-  color: white;
-  background-color: #151718;
+.content h1 p
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  position: relative;
+}
+
+#text
+{
+	outline-style: none;
+	outline: none;
+	border: 0;
+  background-color: lightgrey;
+  padding: 10px;
+}
+
+#creer
+{
+	outline: none;
+	outline-style: none;
+	border: 0;
+	padding: 10px;
+	color: white;
+	background-color: #151718;
+	cursor: pointer;
+}
+
+#creer:hover
+{
+	background-color: darkred;
+	color: white;
+	transition: .5s;
 }

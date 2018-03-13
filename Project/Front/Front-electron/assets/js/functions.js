@@ -15,9 +15,11 @@ $(document).ready(function () {
 
         //add list name to navbar
         let todoListName = $('#TodoListName')[0].value;
-        listUl += "<li><a href='#'>" + todoListName + "</a></li>";
+        let idRoom = localStorage.getItem('currentRoom');
+        listUl += "<li><a href='#' data-action='showTasks' data-value='" + idRoom + "'>" + todoListName + "</a></li>";
         $('#navbar').removeClass('hidden');
         $('#listTodoList').html(listUl);
+        localStorage.setItem('currentTodoList', todoListName);
 
         //adding title and table tag
         let todoTable = $('<h3>')
@@ -75,11 +77,28 @@ $(document).ready(function () {
 
     // One TodoList Table creation
     $('body').on('click', '[data-use="create-todo-list"]',  function () {
+        let htmlRenderResult = "";
         if ($('#taskName')[0].value != "" && $('#taskDescription')[0].value != "" && $('#taskCategory')[0].value != "") {
             let taskName = $('#taskName')[0].value;
             let taskDescription = $('#taskDescription')[0].value;
             let taskCategory = $('#taskCategory')[0].value;
 
+            $.post("http://192.168.33.10:8000/api/todo/",
+                {
+                    todo:taskName ,
+                    description: taskDescription,
+                    category: taskCategory,
+                    Authorization: localStorage.getItem('token'),
+                    room_id: localStorage.getItem('currentRoom'),
+                    todo_id: localStorage.getItem('currentTodoList')
+                },function(data){
+                    if(data == "failed"){
+                        htmlRenderResult = "<p>Task already added</p>";
+                    }
+                    else{
+                        //it's ok
+                    }
+                });
             if (i == 1 && z == 0) {
                 htmlRender += "<thead>";
                 htmlRender += "<tr>";
@@ -109,13 +128,13 @@ $(document).ready(function () {
         }
          //Checking for available category task
         for (let p = 0; p<$('#taskCategoryName')[0].options.length;p++){
-            if ($('#taskCategory')[0].value != $('#taskCategoryName')[0].options[p].innerText) {
+            if ($('#taskCategory')[0].value == $('#taskCategoryName')[0].options[p].innerText) {
+                break;
+            } else if ($('#taskCategory')[0].value != $('#taskCategoryName')[0].options[p].innerText) {
 
                 //adding a new category task
                 let datalistInput = $('<option>').append($('#taskCategory')[0].value);
                 $('#taskCategoryName').append(datalistInput);
-                break;
-            } else if ($('#taskCategory')[0].value == $('#taskCategoryName')[0].options[p].innerText) {
                 break;
             }
         }
@@ -161,5 +180,11 @@ $(document).ready(function () {
         htmlRender = htmlRender.replace(/""/g, "");
 
         $('[data-todolist="' + todoListNumber + '"]').html(htmlRender); // refresh the page
+    });
+
+    //Show Todo_ From Room
+    $('[data-action="showTasks"]').on('click', function(){
+        debugger;
+        $.get("http://192.168.33.10:8000/api/todo", {Authorization:localStorage.getItem('token'), room_id:localStorage.getItem('currentRoom'), todo_id:localStorage.getItem('currentTodoList')})
     });
 });

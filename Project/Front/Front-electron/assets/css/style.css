@@ -60,7 +60,7 @@ a:hover {
     width: 100%;
 }
 
-#wrapper+#sidebarBis {
+#wrapper+#sidebar {
         margin-left: 18em;
 }
 #wrapper+#header>.wrapper>.container>.inner {

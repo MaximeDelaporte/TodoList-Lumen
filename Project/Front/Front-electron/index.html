@@ -15,14 +15,14 @@
     <body>
     <section id="topbar" class="menu-sign">
         <ul>
-            <li><a id="welcome-topbar" data-section="welcome" href="#">Home</a></li>
-            <li><a id="login-topbar" data-section="login" href="#">Log in</a></li>
-            <li><a id="myroom-menu" data-section="myroom" href="#">My room</a></li>
-            <li><a id="mytodolist-menu" data-section="mytodolist" href="#">My todo list</a></li>
-            <li><a id="settings-topbar" data-section="settings" href="#">Settings</a></li>
+            <li><a id="welcome-topbar" data-section="welcome" href="#" data-use="connection" class="hidden">Home</a></li>
+            <li><a id="login-topbar" data-section="login" data-use="connection" href="#">Log in</a></li>
+            <li><a id="myroom-menu" data-section="myroom" data-use="room" href="#" class="hidden">My room</a></li>
+            <li><a id="settings-topbar" data-section="settings" href="#" data-use="editProfile" class="hidden">Settings</a></li>
             <li><a id="logout-topbar" data-section="welcome" href="#" data-action="disconnect" class="hidden">Log out</a></li>
         </ul>
     </section>
+        <div data-use="result"></div>
         <div id="wrapper">
         </div>
     </body>

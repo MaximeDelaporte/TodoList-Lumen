@@ -9,7 +9,6 @@ $(document).ready(function () {
 
     // Create a new todoList
     $('#addTodoList').on('click', function () {
-        //debugger;
         i = 1;
         z = 0;
         todoListNumber += 1;
@@ -80,15 +79,7 @@ $(document).ready(function () {
             let taskName = $('#taskName')[0].value;
             let taskDescription = $('#taskDescription')[0].value;
             let taskCategory = $('#taskCategory')[0].value;
-            /*localStorage.setItem("1",taskName);
-            localStorage.setItem("2",taskDescription);
-            localStorage.setItem("3",taskCategory);*/
 
-            /*$.ajax({
-                type: "POST",
-                url: "",
-                data : {taskName, taskDescription, taskCategory}
-            });*/
             if (i == 1 && z == 0) {
                 htmlRender += "<thead>";
                 htmlRender += "<tr>";

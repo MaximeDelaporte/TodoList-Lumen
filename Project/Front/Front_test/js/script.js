@@ -21,10 +21,10 @@ $(document).ready(function(){
             if(data.api_key)
             {
                 debugger;
-                var htmlRender = "";
+                let htmlRenderResult = "";
                 localStorage.setItem('token', data.api_key);
                 $('[data-use="connection"]').toggleClass('hidden');
-                $('[data-use="result"]').html(htmlRender);
+                $('[data-use="result"]').html(htmlRenderResult);
                 $('[data-use="account"]').toggleClass('hidden');
                 if(!($('[data-use="new"]').hasClass('hidden'))){
                     $('[data-use="new"]').toggleClass('hidden');
@@ -48,10 +48,11 @@ $(document).ready(function(){
 
     //Create New ToDo_ in Current Room
     $('[data-action="newTask"]').on('click', function(){
-        var todo = $('[data-use="newTodo"]')[0].value;
-        var description = $('[data-use="newDescription"]')[0].value;
-        var category = $('[data-use="newCategory"]')[0].value;
-        var htmlRender = "";
+        debugger;
+        let todo = $('[data-use="newTodo"]')[0].value;
+        let description = $('[data-use="newDescription"]')[0].value;
+        let category = $('[data-use="newCategory"]')[0].value;
+        let htmlRenderResult = "";
         if (todo != "" && category != "" && description != ""){
             $.post("http://192.168.33.10:8000/api/todo/",
                 {
@@ -62,17 +63,17 @@ $(document).ready(function(){
                     room_id: localStorage.getItem('currentRoom')
             },function(data){
                 if(data == "failed"){
-                    htmlRender = "<p>Book already added</p>";
+                    htmlRenderResult = "<p>Task already added</p>";
                 }
                 else{
-                     htmlRender = "<p>Task added</p>";
+                     htmlRenderResult = "<p>Task added</p>";
                 }
             })
         }
         else{
-            htmlRender = "<p>Give all info to register this task</p>"
+            htmlRenderResult = "<p>Give all info to register this task</p>"
         }
-        $('[data-use="result"]').html(htmlRender);
+        $('[data-use="result"]').html(htmlRenderResult);
     });
 
     //Add Coworker on current Room(Can be changed later)
@@ -84,7 +85,7 @@ $(document).ready(function(){
 
     //Create New Room with Name
     $('[data-action="newRoom"]').on('click', function(){
-        var name = $('[data-use="newRoomName"]')[0].value;
+        let name = $('[data-use="newRoomName"]')[0].value;
         $.post("http://192.168.33.10:8000/api/room/",{
             name: name,
             Authorization: localStorage.getItem('token')
@@ -102,7 +103,6 @@ $(document).ready(function(){
     //Show Current Room
     $('[data-action="showRoom"]').on('click', function(){
         $.get("http://192.168.33.10:8000/api/room/" + localStorage.getItem('currentRoom') + "/",{Authorization: localStorage.getItem('token')}, function(data){
-            debugger;
             console.log(data);
         })
     });
@@ -117,8 +117,8 @@ $(document).ready(function(){
                 console.log('erreur');
             }
             else{
-                var htmlRender = "<p>Vous pouvez maintenant vous connecter</p>";
-                $('[data-use="result"]').html(htmlRender);
+                let htmlRenderResult = "<p>Vous pouvez maintenant vous connecter</p>";
+                $('[data-use="result"]').html(htmlRenderResult);
             }
         })
     });
@@ -134,8 +134,8 @@ $(document).ready(function(){
                 console.log('erreur');
             }
             else{
-                var htmlRender = "<p>Your Account has been edited</p>";
-                $('[data-use="result"]').html(htmlRender);
+                let htmlRenderResult = "<p>Your Account has been edited</p>";
+                $('[data-use="result"]').html(htmlRenderResult);
             }
         })
     });
@@ -155,19 +155,19 @@ $(document).ready(function(){
     //Get All Rooms where User is authorized
     $('[data-action="getRooms"]').on('click', function(){
         $.get("http://192.168.33.10:8000/api/room/all",{ Authorization:localStorage.getItem('token')},function(data){
-            var htmlRender = "";
+            let htmlRenderResult = "";
             if(data.error){
                 console.log(data);
             }
             else
             {
-                htmlRender +="<ul>";
-                for(var i = 0; i < data.length; i++)
+                htmlRenderResult +="<ul>";
+                for(let i = 0; i < data.length; i++)
                 {
-                    htmlRender += "<li class='bookList'>" + data[i].title + "<input type='checkbox'value=" + data[i].id + "></li>"
+                    htmlRenderResult += "<li class='bookList'>" + data[i].title + "<input type='checkbox' value=" + data[i].id + "></li>"
                 }
-                htmlRender +="</ul>";
-                $('[data-use="result"]').html(htmlRender);
+                htmlRenderResult +="</ul>";
+                $('[data-use="result"]').html(htmlRenderResult);
             }
         });
     })

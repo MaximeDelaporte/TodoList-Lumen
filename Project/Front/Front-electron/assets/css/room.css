@@ -15,7 +15,7 @@ margin: none;
 
 
 /* ----------- SIDEBAR ----------- */
-#sidebarBis {
+#sidebar {
   background-color: #151718;
   width: 200px;
   height: 100%;
@@ -29,7 +29,7 @@ margin: none;
   margin-top: 108px;
 }
 
-#sidebarBis.visible{
+#sidebar.visible{
   left: 0;
   transition: left 0.3s linear;
 }
@@ -98,7 +98,7 @@ b:hover {
 /* ----------- BURGER MENU  btn -----------*/
 
 #sidebar-btn{
-  width: auto;
+  width: 10px;
   height: 15px;
   cursor: pointer;
   position: absolute;

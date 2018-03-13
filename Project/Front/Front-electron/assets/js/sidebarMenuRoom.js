@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $('#sidebar-btn').click(function(){
-    $('#sidebarBis').toggleClass('visible');
+  $('#sidebar-btn').on('click', function(){
+    $('#sidebar').toggleClass('visible');
   });
 });

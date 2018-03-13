@@ -38,6 +38,7 @@ class RoomsController extends Controller
         $this->validate($request, [
             'name' => 'required'
         ]);
+
         $admin = Users::where('api_key','=', $request->input('Authorization'))->value('id');
         $exists =Rooms::where([['name','=', $request->input('name')],['admin','=',$admin]])->exists();
         if ($exists){
@@ -89,16 +90,22 @@ class RoomsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $this->validate($request, [
-            'name' => 'filled'
+            'name' => 'filled',
+            'oldname' => 'filled'
         ]);
-        $room = Rooms::find($id);
-        if($room->fill($request->all())->save()){
-            return response()->json(['status' => 'success']);
+
+        $user = Users::where('api_key','=', $request->input('Authorization'))->value('id');
+        $room_id = Tasklists::join('rooms','tasklists.room_id','=','rooms.id')->where([['user_id','=',$user],['rooms.name','=', $request->input('oldname')]])->value('room_id');
+        $room = Rooms::where('id','=',$room_id);
+        if($room->update([
+            'name' => $request->input('name')
+        ])){
+            return response()->json(['status' => 'success'],200);
         }
-        return response()->json(['status' => 'failed']);
+        return response()->json(['status' => 'failed'],401);
     }
     public function addusers(Request $request){
 
@@ -118,9 +125,11 @@ class RoomsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        if(Rooms::destroy($id)){
+        $admin = Users::where('api_key','=', $request->input('Authorization'))->value('id');
+
+        if(Rooms::where([['admin','=', $admin],['id','=', $id]])->delete()){
             return response()->json(['status' => 'success']);
         }
     }

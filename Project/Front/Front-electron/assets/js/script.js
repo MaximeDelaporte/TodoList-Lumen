@@ -153,6 +153,12 @@ $(document).ready(function(){
 
     ////////////////////////////////////// TO DO LIST ///////////////////////////////////////////////////////////////////////////
 
+    //Show All To Do List in Current Room
+    $('[data-action="showList"]').on('click', function(){
+        $.get("http://192.168.33.10:8000/api/room/list/all",{room_id: localStorage.getItem('currentRoom'), Authorization: localStorage.getItem('token')})
+    });
+
+
     //Create New To Do List in Current Room
     $('[data-action="createList"]').on('click', function(){
         var name = $('[data-use="createList"]')[0].value;
@@ -174,10 +180,14 @@ $(document).ready(function(){
                 })
         }
         else{
-            htmlRender = "<p>Give all info to register this task</p>"
+
         }
-        $('[data-use="result"]').html(htmlRender);
     });
+
+    //Delete To Do List
+    $('[data-action="deleteList"]').on('click', function(){
+        $.get("http://192.168.33.10:8000/api/room/list/"+ localStorage.getItem('currentTodoList') + "/delete/",{Authorization: localStorage.getItem('token')})
+    })
 
     ///////////////////////////////////////  TO DO ///////////////////////////////////////////////////////////////////////////////
 
@@ -187,7 +197,7 @@ $(document).ready(function(){
     });
 
     //Create New To Do in Current To Do List
-    $('[data-action="newTask"]').on('click', function(){
+    $('[data-action="newTodo"]').on('click', function(){
         var todo = $('[data-use="newTodo"]')[0].value;
         var description = $('[data-use="newDescription"]')[0].value;
         var category = $('[data-use="newCategory"]')[0].value;
@@ -230,14 +240,12 @@ $(document).ready(function(){
         });
         $.get("http://192.168.33.10:8000/api/todo", {Authorization:localStorage.getItem('token'), todo_id:localStorage.getItem('currentTodoList')})
     });
-
+    
     //Delete To do  with Id
     $('[data-action="deleteTodo"]').on('click', function(){
         var $id = $('[data-use="deleteTodo"]')[0].value;
         debugger;
-        $.get("http://192.168.33.10:8000/api/todo/"+ $id + "/delete/", {Authorization:localStorage.getItem('token')},function(data){
-
-        });
+        $.get("http://192.168.33.10:8000/api/todo/"+ $id + "/delete/", {Authorization:localStorage.getItem('token')});
     })
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 });

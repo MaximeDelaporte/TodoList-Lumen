@@ -39,6 +39,9 @@ echo "UPDATE"
    sudo apt-get update
    composer update
 echo "CLONE LASTEST PROJECT BACK FROM DEV"
-   git clone  https://github.com/MaximeDelaporte/TodoList-Lumen/tree/dev/Project/Back/data/project
    cd project
    composer install
+   mysql -u root -p -e "create database todo_db"; 
+   php artisan migrate
+   php artisan db:seed
+   vagrant ssh

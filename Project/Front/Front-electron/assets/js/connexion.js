@@ -15,7 +15,7 @@ $('body').ready(function () {
         $('[data-action="disconnect"]').toggleClass('hidden');
         $('[data-use="room"]').toggleClass('hidden');
         $('[data-use="editProfile"]').toggleClass('hidden');
-
+        $('[data-use="sidebar"]').toggleClass('hidden');
     }
 
     $('[data-use="account"]').on('click', function(){
@@ -42,6 +42,7 @@ $('body').ready(function () {
                 $('[data-use="room"]').toggleClass('hidden');
                 $('[data-action="disconnect"]').toggleClass('hidden');
                 $('[data-use="editProfile"]').toggleClass('hidden');
+                $('[data-use="sidebar"]').toggleClass('hidden');
             }
             else
             {

@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Title</title>
+        <title>TOP THAT</title>
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="assets/css/room.css">
         <link rel="import" href="assets/sections/Welcome.html">
@@ -13,21 +13,46 @@
         <link rel="import" href="assets/sections/settings.html">
     </head>
     <body>
-    <section id="topbar" class="menu-sign">
-        <ul>
-            <li><a id="welcome-topbar" data-section="welcome" href="#" data-use="connection" class="hidden">Home</a></li>
-            <li><a id="login-topbar" data-section="login" data-use="connection" href="#">Log in</a></li>
-            <li><a id="myroom-menu" data-section="myroom" data-use="room" href="#" class="hidden">My room</a></li>
-            <li><a id="settings-topbar" data-section="settings" href="#" data-use="editProfile" class="hidden">Settings</a></li>
-            <li><a id="logout-topbar" data-section="welcome" href="#" data-action="disconnect" class="hidden">Log out</a></li>
-        </ul>
-    </section>
-        <div id="wrapper">
-        </div>
+      <div data-use="sidebar" class="hidden">
+        <div class="gauche">
+    			<!-- PROFILE SIDENAV -->
+    			<div class="sidenav">
+    				<img src="assets/images/avatar.png" alt="Avatar">
+    				<a href="#profile">profile</a>
+            <a id="welcome-topbar" data-section="welcome" href="#" data-use="connection" class="hidden">Home</a>
+    				<a href="#email">
+    					<i class="fas fa-plus"></i>
+    					<i class="far fa-envelope"></i>
+    				</a>
+    				<a id="settings-topbar" data-section="settings" href="#" data-use="editProfile" class="hidden"><i class="fas fa-cogs"></i></a>
+            <a id="myroom-menu" data-section="myroom" data-use="room" href="#" class="hidden">My room</a>
+            <a id="logout-topbar" data-section="welcome" href="#" data-action="disconnect" class="hidden"><i class="fas fa-power-off"></i></a>
+
+          </div>
+    			<!-- Sidebar -->
+    			<div id="sidebar">
+    				<ul id="list-room"></ul>
+    				<div id="sidebar-btn">
+    					<p>Room</p>
+    				</div>
+    			</div>
+    	</div>
+    </div>
+
+    <div id="wrapper">
+        <!-- <li><a id="welcome-topbar" data-section="welcome" href="#" data-use="connection" class="hidden">Home</a></li>
+        <li><a id="login-topbar" data-section="login" data-use="connection" href="#">Log in</a></li>
+        <li><a id="myroom-menu" data-section="myroom" data-use="room" href="#" class="hidden">My room</a></li> -->
+        <!-- <li><a id="settings-topbar" data-section="settings" href="#" data-use="editProfile" class="hidden">Settings</a></li> -->
+        <!-- <li><a id="logout-topbar" data-section="welcome" href="#" data-action="disconnect" class="hidden">Log out</a></li> -->
+    </div>
+    
+
     <div data-use="result"></div>
     </body>
     <script>window.$ = window.jQuery = require('./assets/js/jquery.min.js');</script>
     <script>window.$ = window.jQuery = require('./assets/js/jquery.validate.min.js');</script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <script>
         require('./assets/js/menu.js');
         require('./assets/js/functions.js');

@@ -1,12 +1,9 @@
 body {
-    background-color: aliceblue;
-    font-family: "Roboto", sans-serif;
-    display: flex;
-    flex-direction: row;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  background-color: lightgrey;
+  font-family: sans-serif;
+
 }
 
 a {
@@ -19,7 +16,8 @@ a:hover {
     color: #ffedea;
 }
 
-.menu-sign {
+
+/* .menu-sign {
     width: 100vw;
     position: absolute;
     background-color: #2e6da4;
@@ -49,7 +47,7 @@ a:hover {
 
 .menu li {
     padding-bottom: 15px;
-}
+} */
 
 #wrapper {
     margin-left: 0;
@@ -172,10 +170,10 @@ nav li a {
 }
 
 .form button:hover {
-    background: #18392b;
+    background: #151718;
     margin-top: 15px;
     padding: 5px 15px;
-    color: whitesmoke;
+    color: white;
     outline: none;
     border: none;
     transition-property: background-color;
@@ -189,22 +187,22 @@ nav li a {
     text-align: center;
     border: none;
     border-style: inherit;
-    border-bottom: .5px solid #18392b;
+    border-bottom: .5px solid #151718;
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 25%;
     margin-bottom: 15px;
     padding: 12px 15px;
 }
 
 [type="text"]:focus {
-    color: #18392b;
+    color: #151718;
     outline: none;
-    border-bottom: .5px solid tomato;
+    border-bottom: .5px solid darkred;
 }
 
 [type="text"]:hover {
-    border-bottom: .5px solid tomato;
+    border-bottom: .5px solid darkred;
 }
 
 [type="password"] {
@@ -212,7 +210,7 @@ nav li a {
     text-align: center;
     border: none;
     border-style: hidden;
-    border-bottom: .5px solid #18392b;
+    border-bottom: .5px solid #151718;
     display: flex;
     flex-direction: column;
     width: 25%;
@@ -221,13 +219,13 @@ nav li a {
 }
 
 [type="password"]:focus {
-    color: #18392b;
+    color: #151718;
     outline: none;
-    border-bottom: .5px solid tomato;
+    border-bottom: .5px solid darkred;
 }
 
 [type="password"]:hover{
-    border-bottom: .5px solid tomato;
+    border-bottom: .5px solid darkred;
 }
 
 [type="email"]{
@@ -235,7 +233,7 @@ nav li a {
     text-align: center;
     border: none;
     border-style: hidden;
-    border-bottom: .5px solid #18392b;
+    border-bottom: .5px solid #151718;
     display: flex;
     flex-direction: column;
     width: 25%;
@@ -244,17 +242,17 @@ nav li a {
 }
 
 [type="email"]:focus {
-    color: #18392b;
+    color: #151718;
     outline: none;
-    border-bottom: .5px solid tomato;
+    border-bottom: .5px solid darkred;
 }
 
 [type="email"]:hover{
-    border-bottom: .5px solid tomato;
+    border-bottom: .5px solid darkred;
 }
 
 ::placeholder {
-    color: tomato;
+    color: darkred;
 }
 
 
@@ -268,11 +266,11 @@ nav li a {
     outline: none;
     text-transform: uppercase;
     background-color: transparent;
-    border-bottom: .5px solid #18392b;
+    border-bottom: .5px solid #151718;
 }
 
 [type="create"]:hover {
-    background: #18392b;
+    background: #151718;
     margin-top: 15px;
     padding: 5px 15px;
     color: whitesmoke;
@@ -291,11 +289,11 @@ nav li a {
 
 .message a{
     text-decoration: none;
-    color: #18392b;
+    color: darkred;
 }
 
 .message a:hover{
-    color: tomato;
+    color: #151718;
 }
 
 .form .register-form{

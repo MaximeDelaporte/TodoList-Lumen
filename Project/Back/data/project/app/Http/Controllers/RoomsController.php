@@ -53,7 +53,7 @@ class RoomsController extends Controller
                 'user_id' => $admin,
                 'room_id' => $id
             ])->save()){
-                return response()->json(['status' => 'success', 'room_id' => $id]);
+                return response()->json(['status' => 'success', 'room_id' => $id,'name'=> $request->input('name')]);
             }
         }
         else{

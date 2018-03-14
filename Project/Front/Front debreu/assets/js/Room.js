@@ -20,11 +20,11 @@ $(document).ready(function(){
             }
             else {
                 localStorage.setItem('currentRoom', data.room_id);
+                $('#sidebar ul').append('<li class="room"><a href="#" data-section="mytodolist" data-action="showRoom" data-use="deleteRoom" data-value="' + data.room_id + '">' + data.name + '</a><b id="removeRoom" data-action="deleteRoom">X</b></li>');
             }
         });
         //$.get("http://192.168.33.10:8000/api/room/all",{Authorization:localStorage.getItem('token')});
-        let idRoom = localStorage.getItem('currentRoom');
-        $('#sidebar ul').append('<li class="room"><a href="#" data-section="mytodolist" data-action="showRoom" data-use="deleteRoom" data-value="' + idRoom + '">' + name + '</a><b id="removeRoom" data-action="deleteRoom">X</b></li>');
+
     });
 
     //Show Current Room
@@ -40,27 +40,29 @@ $(document).ready(function(){
 
     //Get All Rooms where User is authorized
     $('[data-action="getRooms"]').ready( function(){
-        debugger;
         $.get("http://192.168.33.10:8000/api/room/all",{ Authorization:localStorage.getItem('token')},function(data){
             debugger;
             for(let i = 0; i < data.result.length;i++) {
-                $('[data-action="getRooms"]').append('<li class="room"><a href="#" data-section="mytodolist" data-action="showRoom" data-use="deleteRoom" data-value="' + data.result[i].room_id + '">' + data.result[i].name + '</a><b id="removeRoom" data-action="deleteRoom">X</b></li>');
+                $('#sidebar ul').append('<li class="room"><a href="#" data-section="mytodolist" data-action="showRoom" data-use="deleteRoom" data-value="' + data.result[i].room_id + '">' + data.result[i].name + '</a><b id="removeRoom" data-action="deleteRoom">X</b></li>');
 
             }
         });
     });
+    $('body').on('click','.room', function(){
+      debugger;
+      let $room_id = $(this).contents().data("value");
+      localStorage.setItem('currentRoom', $room_id);
+       $.get("http://192.168.33.10:8000/api/room/list/all",{room_id: localStorage.getItem('currentRoom'), Authorization: localStorage.getItem('token')});
+    })
 
     // Delete a room
     $(document).on('click', '#removeRoom',function(){
-        $(this).parent().fadeToggle();
-    });
-    //Delete Room with Id
-    $('[data-action="deleteRoom"]').on('click', function(){
-        debugger;
-        let $id = $('[data-use="deleteRoom"]')[0].value;
-        $.post("http://192.168.33.10:8000/api/room/delete/" + $id +"/", {Authorization:localStorage.getItem('token')},function(data){
+      debugger;
+      let $id = $(this).parent().contents().data("value");
+      $.post("http://192.168.33.10:8000/api/room/delete/"+ $id + "/", {Authorization:localStorage.getItem('token')},function(data){
 
-        });
+      });
+        $(this).parent().fadeToggle();
     });
 
     //SidebarMenuRoom

@@ -1,0 +1,19 @@
+<template class="section-template">
+    <section id="mytodolist" class="wrapper main-content">
+        <div class="container">
+            <nav class="hidden" id="navbar">
+                <ul id="listTodoList"></ul>
+            </nav>
+            <div class="inner">
+                <div id="tableTodo" data-use="task">
+                    <h2>Todo List</h2>
+                    <input type="text" id="TodoListName" data-use="TodoListName" placeholder="Type your todo List Name">
+                    <button data-use="addTodoList" id="addTodoList">+</button>
+                </div>
+                <div data-action="createTable">
+                </div>
+                <p id="typingTask"></p>
+            </div>
+        </div>
+    </section>
+</template>

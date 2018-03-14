@@ -1,0 +1,29 @@
+<template class="section-template">
+    <section id="login" class="wrapper login-page">
+        <div class="form">
+
+            <!-- Create -->
+            <form class="register-form" id="createForm" method="post" data-use="new">
+                <input id="nameCreate" type="text" name="name" placeholder="username" data-use="newName">
+                <input id="emailCreate" type="email" name="email" placeholder="email" data-use="newEmail">
+                <input id="mdpCreate" type="password" name="mdp" placeholder="password" data-use="newPassword">
+                <button data-action="subscribe" id="create">Create</button>
+                <p class="message">Already registered ? <a href="#connectForm"> Login</a></p>
+            </form>
+
+
+            <!-- Connexion -->
+            <form class="login-form" id="connectForm" action="../js/formulaire.js" method="post" data-use="connection">
+                <input id="emaillog" type="email" name="email" placeholder="email" data-use="email" required>
+                <input id="mdplog" type="password" name="mdp" placeholder="password" data-use="password" required>
+                <button data-action="connect" id="connexion">Login</button>
+                <p class="message">Not registered ? <a href="#createForm"> Sign up</a></p>
+            </form>
+        </div>
+        <!--<label for="email">Email :</label>
+        <input type="text" name="email"  placeholder="email">
+        <label for="password">Password :</label>
+        <input type="text" name="password"  placeholder="password">
+        <input type="submit" data-use="connection" value="Sign in">-->
+    </section>
+</template>

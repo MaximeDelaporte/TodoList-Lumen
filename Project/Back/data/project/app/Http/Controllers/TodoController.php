@@ -26,7 +26,7 @@ class TodoController extends Controller
     {
         $todo_id = $request->input('todo_id');
      
-        $todo = Todo::where('todo_id','=', $todo_id)->groupBy('category')->get();
+        $todo = Todo::where('todo_id','=', $todo_id)->/*groupBy('category')->*/get();
         return response()->json(['status' => 'success','result' => $todo]);
     }
     /**

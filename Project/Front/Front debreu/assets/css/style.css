@@ -47,7 +47,7 @@ a:hover {
 }
 
 .taskDone {
-    color: green;
+    color: green !important;
 }
 
 #tableTodo {

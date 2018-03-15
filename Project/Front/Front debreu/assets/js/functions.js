@@ -74,7 +74,7 @@ $(document).ready(function () {
     }
 
     function RowTableCreation (taskName, taskDescription, taskCategory, i) {
-        htmlRender += "<tr>";
+        htmlRender += "<tr data-class='" + i + "'>";
         htmlRender += "<td><input type='checkbox' data-checktodo='" + i + "'></td>";
         htmlRender += "<td>" + taskName + "</td>";
         htmlRender += "<td>" + taskDescription + "</td>";
@@ -171,7 +171,7 @@ $(document).ready(function () {
                             z++;
                         }
                         i = data.result[0].id;
-                        htmlRender += "<tr>";
+                        htmlRender += "<tr data-class='" + i +"'>";
                         htmlRender += "<td><input type='checkbox' data-checktodo='" + i + "'></td>";
                         htmlRender += "<td>" + taskName + "</td>";
                         htmlRender += "<td>" + taskDescription + "</td>";
@@ -204,12 +204,12 @@ $(document).ready(function () {
     });
 
     // Achieve a task
-    $('#mytodolist').on('click', function () {
-        for(let j = 1; j < i; j++){
-            if ($("input[data-checktodo=" + j + "']").prop('checked')) {
-                $('tr:nth-child(' + j + ') td').addClass('taskDone')
-            } else if ($("input[data-checktodo=" + j + "']").prop('checked') == false){
-                $('tr:nth-child(' + j + ') td').removeClass('taskDone')
+    $('#mytodolist').on('click', 'tr', function () {
+        for(let j = $(this)["0"].children["0"].children["0"].attributes[1].value; j <= $(this)["0"].parentElement.lastChild.children["0"].children["0"].attributes[1].value; j++){
+            if ($("input[data-checktodo='" + j + "']").prop('checked')) {
+                $("[data-class='" + j + "'").addClass('taskDone');
+            } else if ($("input[data-checktodo='" + j + "']").prop('checked') == false){
+                $("[data-class='" + j + "'").removeClass('taskDone');
             }
         }
     });

@@ -34,13 +34,6 @@ margin: none;
   transition: left 0.3s linear;
 }
 
-ul{
-  margin: 0;
-  padding: 0;
-  display: block;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
 
 li {
   display: flex;
@@ -55,18 +48,7 @@ ul li b{
   flex-wrap: wrap;
 }
 
-ul li a {
-  background-color: #1c1e1f;
-  color: lightgrey;
-  border-bottom: 1px solid #111;
-  display: block;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 140px;
-  padding: 10px;
-  text-decoration: none;
-  text-align: center;
-}
+
 
 ul li a:hover {
   color: white;

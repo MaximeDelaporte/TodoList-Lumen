@@ -9,47 +9,14 @@ body {
     padding: 0;
 }
 
-a {
-    text-decoration: none;
-    color: #ff9749;
-}
+
 
 a:hover {
     text-decoration: none;
     color: #ffedea;
 }
 
-.menu-sign {
-    width: 100vw;
-    position: absolute;
-    background-color: #2e6da4;
-}
 
-.menu-sign ul {
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.menu-sign li {
-    padding-right: 25px;
-}
-.menu {
-    width: 15%;
-    background-color: #2e6da4;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.menu ul {
-    list-style: none;
-}
-
-.menu li {
-    padding-bottom: 15px;
-}
 
 #wrapper {
     margin-left: 0;
@@ -172,7 +139,7 @@ nav li a {
 }
 
 .form button:hover {
-    background: #18392b;
+    background: #151718;
     margin-top: 15px;
     padding: 5px 15px;
     color: whitesmoke;
@@ -189,7 +156,7 @@ nav li a {
     text-align: center;
     border: none;
     border-style: inherit;
-    border-bottom: .5px solid #18392b;
+    border-bottom: .5px solid #151718;
     display: flex;
     flex-direction: column;
     width: 30%;
@@ -200,11 +167,11 @@ nav li a {
 [type="text"]:focus {
     color: #18392b;
     outline: none;
-    border-bottom: .5px solid tomato;
+    border-bottom: .5px solid darkred;
 }
 
 [type="text"]:hover {
-    border-bottom: .5px solid tomato;
+    border-bottom: .5px solid darkred;
 }
 
 [type="password"] {
@@ -212,7 +179,7 @@ nav li a {
     text-align: center;
     border: none;
     border-style: hidden;
-    border-bottom: .5px solid #18392b;
+    border-bottom: .5px solid #151718;
     display: flex;
     flex-direction: column;
     width: 25%;
@@ -221,13 +188,13 @@ nav li a {
 }
 
 [type="password"]:focus {
-    color: #18392b;
+    color: #151718;
     outline: none;
-    border-bottom: .5px solid tomato;
+    border-bottom: .5px solid darkred;
 }
 
 [type="password"]:hover{
-    border-bottom: .5px solid tomato;
+    border-bottom: .5px solid darkred;
 }
 
 [type="email"]{
@@ -246,15 +213,15 @@ nav li a {
 [type="email"]:focus {
     color: #18392b;
     outline: none;
-    border-bottom: .5px solid tomato;
+    border-bottom: .5px solid darkred;
 }
 
 [type="email"]:hover{
-    border-bottom: .5px solid tomato;
+    border-bottom: .5px solid darkred;
 }
 
 ::placeholder {
-    color: tomato;
+    color: darkred;
 }
 
 
@@ -291,11 +258,11 @@ nav li a {
 
 .message a{
     text-decoration: none;
-    color: #18392b;
+    color: darkred;
 }
 
 .message a:hover{
-    color: tomato;
+    color: darkred;
 }
 
 .form .register-form{

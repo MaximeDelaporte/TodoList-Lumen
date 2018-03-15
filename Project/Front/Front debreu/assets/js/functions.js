@@ -258,7 +258,7 @@ $(document).ready(function () {
                 alert("There are no tasks in here");
                 TaskCreationBar();
             } else {
-                TableCreation(data.result["0"].todo_id);
+                TableCreation($("[data-action='showTasks']")["0"].innerText);
                 RowTableCreationTitle();
                 for(let i = 0; i < data.result.length ; i++) {
                     RowTableCreation(data.result[i].todo, data.result[i].description, data.result[i].category, data.result[i].id);

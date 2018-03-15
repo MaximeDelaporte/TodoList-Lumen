@@ -26,6 +26,23 @@ $(document).ready(function(){
         let idRoom = localStorage.getItem('currentRoom');
         $('#sidebar ul').append('<li class="room"><a href="#" data-section="mytodolist" data-action="showRoom" data-use="deleteRoom" data-value="' + idRoom + '">' + name + '</a><b id="removeRoom" data-action="deleteRoom">X</b></li>');
     });
+    $('[data-action="newRoomBar"]').on('click', function(){
+        let name = $('[data-use="newRoomNameBar"]')[0].value;
+        $.post("http://192.168.33.10:8000/api/room/",{
+            name: name,
+            Authorization: localStorage.getItem('token')
+        },function(data){
+            if(data.status == "failed"){
+                console.log(data);
+            }
+            else {
+                localStorage.setItem('currentRoom', data.room_id);
+            }
+      });
+        //$.get("http://192.168.33.10:8000/api/room/all",{Authorization:localStorage.getItem('token')});
+        let idRoom = localStorage.getItem('currentRoom');
+        $('#sidebar ul').append('<li class="room"><a href="#" data-section="mytodolist" data-action="showRoom" data-use="deleteRoom" data-value="' + idRoom + '">' + name + '</a><b id="removeRoom" data-action="deleteRoom">X</b></li>');
+    });
 
     //Show Current Room
     $('[data-action="showRoom"]').on('click', function(){

@@ -1,0 +1,225 @@
+body
+{
+	margin: 0;
+	padding: 0;
+  font-family: "laksaman", sans-serif;
+  display: flex;
+}
+
+.gauche
+{
+	display: inline-block;
+	flex-direction: column;
+	margin: 0;
+}
+
+/* ----------- PROFILE ----------- */
+.sidenav
+{
+	background-color: #151718;
+	display: block;
+	width: 170px;
+	height: auto;
+	flex-direction: column;
+	top: 0;
+	position: relative;
+	padding-top: 35px;
+}
+
+.sidenav a
+{
+	padding: 10px 20px 30px 10px;
+	text-decoration: none;
+	color: lightgrey;
+	display: block;
+	background-color: #151718;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.sidenav a:hover
+{
+	color: white;
+}
+
+.sidenav img
+{
+	padding-bottom: 50px;
+	display: block;
+	margin: auto;
+	width: 50%;
+	height: 50%;
+}
+
+/* ----------- SIDEBAR ----------- */
+#sidebar
+{
+	background-color: #151718;
+	width: 170px;
+	height: auto;
+	display: block;
+	flex-direction: row;
+	flex-wrap: wrap;
+	position: absolute;
+	left: -170px;
+	transition: left 0.3s linear;
+}
+
+#sidebar.visible
+{
+	left: 0px;
+	transition: left 0.3s linear;
+}
+
+ul
+{
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+li
+{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+ul li b
+{
+	list-style: none;
+	display: block;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+ul li a
+{
+	background-color: #1c1e1f;
+	color: lightgrey;
+	border-bottom: 1px solid #111;
+	display: block;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 110px;
+	padding: 10px;
+	text-decoration: none;
+	text-align: center;
+}
+
+ul li a:hover
+{
+	color: white;
+}
+
+/* bouton supprimer */
+b
+{
+	background-color: darkred;
+	color: lightgrey;
+	border-bottom: 1px solid #111;
+	display: block;
+	width: 20px;
+	padding: 10px;
+	text-decoration: none;
+	text-align: center;
+	margin: 0;
+	cursor: pointer;
+	z-index: 1;
+}
+
+b:hover
+{
+	color: white;
+	background-color: red;
+	transition-duration: 0.4s;
+}
+
+/* ----------- SIDEBAR MENU  btn -----------*/
+#sidebar-btn
+{
+	width: auto;
+	height: 15px;
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	right: -62px;
+	padding: 0;
+	align-items: center;
+}
+
+#sidebar-btn p
+{
+	background-color: #151718;
+	color: lightgrey;
+	padding: 10px;
+  margin: 0;
+}
+
+#sidebar-btn p:hover
+{
+	color: white;
+}
+/* -----------------------*/
+/* CREATE ROOM IN SIDEBAR */
+/* -----------------------*/
+.eRoom {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0;
+}
+
+.exampleRoom {
+	display: flex;
+	flex-wrap: wrap;
+	width: 110px;
+	margin: 0;
+}
+
+
+/* ----------- CONTENT ----------- */
+.content
+{
+  display: inline-block;
+  padding: 10px;
+  margin-top: 150px;
+  margin-left: 100px;
+  margin-right: auto;
+}
+
+.content h1 p
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  position: relative;
+}
+
+#text
+{
+	outline-style: none;
+	outline: none;
+	border: 0;
+  background-color: white;
+  padding: 10px;
+}
+
+#createRoom
+{
+	outline: none;
+	outline-style: none;
+	border: 0;
+	padding: 10px;
+	color: white;
+	background-color: #151718;
+	cursor: pointer;
+}
+
+#createRoom:hover
+{
+	background-color: darkred;
+	color: white;
+	transition: .5s;
+}

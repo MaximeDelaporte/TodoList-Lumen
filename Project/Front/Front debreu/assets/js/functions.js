@@ -5,7 +5,6 @@ $(document).ready(function () {
     let listUl = "";
     let i;
     let z;
-    //let todoListNumber = 0;
 
     function TableCreation(todoListName) {
         let todoTable = $('<h3>')
@@ -74,9 +73,9 @@ $(document).ready(function () {
         $('[data-table="' + localStorage.getItem('currentTodoList') + '"]').html(htmlRender);
     }
 
-    function RowTableCreation (taskName, taskDescription, taskCategory) {
+    function RowTableCreation (taskName, taskDescription, taskCategory, i) {
         htmlRender += "<tr>";
-        htmlRender += "<td><input type='checkbox' id='checktodo-" + i + "'></td>";
+        htmlRender += "<td><input type='checkbox' data-checktodo='" + i + "'></td>";
         htmlRender += "<td>" + taskName + "</td>";
         htmlRender += "<td>" + taskDescription + "</td>";
         htmlRender += "<td>" + taskCategory + "</td>";
@@ -87,13 +86,23 @@ $(document).ready(function () {
 
     //Show All To Do List in Current Room
     $('[data-action="showList"]').ready(function(){
-        debugger;
         $.get("http://192.168.33.10:8000/api/room/list/all",{room_id: localStorage.getItem('currentRoom'), Authorization: localStorage.getItem('token')}, function (data) {
             for(let i = 0; i < data.result.length;i++) {
-                debugger;
-                $('[data-action="showList"]').append('<li class=""><a href="#" data-action="showTasks" data-value="' + data.result[i].id + '">' + data.result[i].name + '</a></li>');
+                $('[data-action="showList"]').append('<li class=""><a href="#" data-action="showTasks" data-value="' + data.result[i].id + '">' + data.result[i].name + '</a><b id="removeTodoList" data-action="deleteList">X</b></li>');
             }
         })
+
+    });
+
+    //Delete To Do List
+    $('#listTodoList').on('click', '[data-action="deleteList"]', function(){
+        debugger;
+        localStorage.setItem('currentTodoList', $(this).parent()["0"].children["0"].attributes[2].value);
+        $.get("http://192.168.33.10:8000/api/room/list/"+ localStorage.getItem('currentTodoList') + "/delete/",{Authorization: localStorage.getItem('token')}, function (data) {
+            alert('Todo List deleted');
+        });
+        $(this).parent()["0"].remove();
+
 
     });
 
@@ -121,7 +130,7 @@ $(document).ready(function () {
                         htmlRenderTask = "<p>Task added</p>";
                         //add list name to navbar
                         let todoListName = $('#TodoListName')[0].value;
-                        listUl += "<li><a href='#' data-action='showTasks' data-value='" + localStorage.getItem('currentTodoList') + "'>" + todoListName + "</a></li>";
+                        listUl += "<li><a href='#' data-action='showTasks' data-value='" + localStorage.getItem('currentTodoList') + "'>" + todoListName + "</a><b id='removeTodoList' data-action='deleteList'>X</b></li>";
                         $('#listTodoList').html(listUl);
 
                         //adding title and table tag
@@ -132,15 +141,11 @@ $(document).ready(function () {
                         //adding button and the 3 inputs task bar
 
                         TaskCreationBar();
-
                     }
                 });
-
         }
         else{
         }
-
-        //return todoListNumber;
     });
 
     // One TodoList Table creation
@@ -165,6 +170,8 @@ $(document).ready(function () {
                     }
                     else{
                         //it's ok
+                        debugger;
+                        i = data.result[0].id;
                     }
                 });
             if (i == 1 && z == 0) {
@@ -180,7 +187,7 @@ $(document).ready(function () {
                 z++;
             }
             htmlRender += "<tr>";
-            htmlRender += "<td><input type='checkbox' id='checktodo-" + i + "'></td>";
+            htmlRender += "<td><input type='checkbox' data-checktodo='" + i + "'></td>";
             htmlRender += "<td>" + taskName + "</td>";
             htmlRender += "<td>" + taskDescription + "</td>";
             htmlRender += "<td>" + taskCategory + "</td>";
@@ -212,9 +219,9 @@ $(document).ready(function () {
     // Achieve a task
     $('#mytodolist').on('click', function () {
         for(let j = 1; j < i; j++){
-            if ($("input[id='checktodo-" + j + "']").prop('checked')) {
+            if ($("input[data-checktodo=" + j + "']").prop('checked')) {
                 $('tr:nth-child(' + j + ') td').addClass('taskDone')
-            } else if ($("input[id='checktodo-" + j + "']").prop('checked') == false){
+            } else if ($("input[data-checktodo=" + j + "']").prop('checked') == false){
                 $('tr:nth-child(' + j + ') td').removeClass('taskDone')
             }
         }
@@ -222,15 +229,13 @@ $(document).ready(function () {
 
     // Delete a task
     $('#mytodolist').on('click', '[name="delete"]',function () {
-        debugger;
         alert('Are you sure?');
-        let text = document.querySelector('[id^="checktodo-"]');
-        let firstTr = $(text)["0"].id.slice(-1); // take the first checkbox id button for initialize "l" in the loop
+        let firstTr = $('[data-checktodo]')["0"].attributes[1].value; // take the first checkbox id button for initialize "l" in the loop
 
         $(this).closest('tr').remove();
         htmlRenderBis = htmlRender.split('<tr>'); // put the string into an array to make easier the deleting
-        for (let k = 2, l=firstTr; l < htmlRenderBis.length; k++, l++) {
-            if($(this).closest('tr')["0"].firstChild.children["0"].id.slice(-1) == l){
+        for (let k = 2, l=firstTr; k < htmlRenderBis.length; k++, l++) {
+            if($(this).closest('tr')["0"].firstChild.children["0"].attributes[1].value == l){
                 htmlRenderBis[k] = htmlRenderBis[k].replace(/(<.+)/g, ""); //delete the needed table row
                 if (htmlRenderBis[k+1] != null){
                     for(let m = k+1, n = l; m < htmlRenderBis.length; m++, n++)
@@ -249,12 +254,17 @@ $(document).ready(function () {
         htmlRender = htmlRender.replace(htmlRender.slice(0, 4), ""); // we delete the extra tr tag at the start
         htmlRender = htmlRender.replace(/""/g, "");
 
+        let $id = firstTr;
+        $.get("http://192.168.33.10:8000/api/todo/"+ $id + "/delete/", {Authorization:localStorage.getItem('token')});
         $('[data-table="' + localStorage.getItem('currentTodoList') + '"]').html(htmlRender); // refresh the page
     });
 
     //Show To do From To Do List
     $('#navbar').on('click', '[data-action="showTasks"]', function(){
+        htmlRender = "";
+        $('[data-table="' + localStorage.getItem('currentTodoList') + '"]').html(htmlRender);
         localStorage.setItem('currentTodoList', $(this)["0"].attributes[2].nodeValue);
+        TableCreation(localStorage.getItem('currentTodoList'));
         $.get("http://192.168.33.10:8000/api/todo", {Authorization:localStorage.getItem('token'), todo_id:localStorage.getItem('currentTodoList')}, function (data) {
             if (data.result.length == 0) {
                 alert("There are no tasks in here");
@@ -263,7 +273,7 @@ $(document).ready(function () {
                 TableCreation(data.result["0"].todo_id);
                 RowTableCreationTitle();
                 for(let i = 0; i < data.result.length ; i++) {
-                    RowTableCreation(data.result[i].todo, data.result[i].description, data.result[i].category);
+                    RowTableCreation(data.result[i].todo, data.result[i].description, data.result[i].category, data.result[i].id);
                 }
                 TaskCreationBar();
             }

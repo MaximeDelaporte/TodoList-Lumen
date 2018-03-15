@@ -50,5 +50,5 @@ $(document).ready(function() {
         'Au moins un chiffre' +
         'Au moins six caractères'
         );
-
+*/
 });

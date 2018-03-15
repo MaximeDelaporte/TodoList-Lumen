@@ -26,7 +26,7 @@ class TodoController extends Controller
     {
         $todo_id = $request->input('todo_id');
      
-        $todo = Todo::join('todo_lists','todo_lists.id','=','todo.todo_id')->select('*')->where('todo_lists.id','=', $todo_id)->groupBy('category')->get();
+        $todo = Todo::where('todo_id','=', $todo_id)->groupBy('category')->get();
         return response()->json(['status' => 'success','result' => $todo]);
     }
     /**
@@ -50,8 +50,8 @@ class TodoController extends Controller
                 'category' => $request->input('category'),
                 'finished' => false,
                 'todo_id' =>$request->input('todo_id')
-                ])->save()){
-            return response()->json(['status' => 'success']);
+                ])->save($todo)){
+            return response()->json(['status' => 'success', 'result' => $todo ]);
         }else{
             return response()->json(['status' => 'fail']);
         }

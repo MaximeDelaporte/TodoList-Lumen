@@ -85,6 +85,13 @@
                 <input type="button" value="Create To Do List" data-action="createList">
                 <!--End ofCreate To Do List-->
 
+                <!--Show All To Do List in Current Room-->
+                <input type="button" value="Show To Do List" data-action="showList">
+                <!--End of Show All To Do List in Current Room-->
+
+                <!--Delete Current To Do List-->
+                <input type="button" value="Delete Current To Do List" data-action="deleteList">
+                <!--End of Delete Current To Do List-->
             </section>
             <!--End of To Do List actions-->
 
@@ -92,11 +99,7 @@
             <!--To Do actions-->
             <section data-use="task" class="hidden">
 
-                <!--Delete To Do-->
-                <p>Delete To Do</p>
-                <input type="text" value="" placeholder="Id ToDo to Delete" data-use="deleteTodo">
-                <input type="button" value="Delete ToDo" data-action="deleteTodo">
-                <!--End of Delete To Do-->
+
 
                 <!--Add To Do-->
                 <div class="addTask">
@@ -104,7 +107,7 @@
                     <input type='text' placeholder="To do" data-use="newTodo">
                     <input type='text' placeholder="Description" data-use="newDescription">
                     <input type='text' placeholder="Category" data-use="newCategory">
-                    <input type="submit" value="Add" data-action="newTask">
+                    <input type="submit" value="Add" data-action="newTodo">
                 </div>
                 <!--End of Add To Do-->
 
@@ -126,6 +129,11 @@
                     <input type="submit" value="Finished ToDo" data-action="endTask">
                 </div>
                 <!--End of Set To Do as finished-->
+                <!--Delete To Do-->
+                <p>Delete To Do</p>
+                <input type="text" value="" placeholder="Id ToDo to Delete" data-use="deleteTodo">
+                <input type="button" value="Delete ToDo" data-action="deleteTodo">
+                <!--End of Delete To Do-->
             </section>
             <!--End of To Do actions-->
 

@@ -5,7 +5,6 @@ $(document).ready(function () {
     let listUl = "";
     let i;
     let z;
-    //let todoListNumber = 0;
 
     function TableCreation(todoListName) {
         let todoTable = $('<h3>')
@@ -95,13 +94,24 @@ $(document).ready(function () {
 
     });
 
+    //Delete To Do List
+    $('#listTodoList').on('click', '[data-action="deleteList"]', function(){
+        debugger;
+        localStorage.setItem('currentTodoList', $(this).parent()["0"].children["0"].attributes[2].value);
+        $.get("http://192.168.33.10:8000/api/room/list/"+ localStorage.getItem('currentTodoList') + "/delete/",{Authorization: localStorage.getItem('token')}, function (data) {
+            alert('Todo List deleted');
+        });
+        $(this).parent()["0"].remove();
+
+
+    });
+
     //Create New To Do List in Current Room
     $('#addTodoList').on('click', function () {
         i = 1;
         z = 0;
 
         let name = $('[data-use="TodoListName"]')[0].value;
-        let htmlRenderTask = "";
         if (name != ""){
 
             $.post("http://192.168.33.10:8000/api/room/list",
@@ -114,9 +124,8 @@ $(document).ready(function () {
                         console.log(data);
                     }
                     else{
-                        debugger;
                         localStorage.setItem('currentTodoList', data.todo_id);
-                        htmlRenderTask = "<p>Task added</p>";
+
                         //add list name to navbar
                         let todoListName = $('#TodoListName')[0].value;
                         listUl += "<li><a href='#' data-action='showTasks' data-value='" + localStorage.getItem('currentTodoList') + "'>" + todoListName + "</a></li>";
@@ -133,18 +142,13 @@ $(document).ready(function () {
 
                     }
                 });
-
         }
         else{
         }
-
-        //return todoListNumber;
     });
 
     // One TodoList Table creation
     $('body').on('click', '[data-action="newTodo"]',  function () {
-        debugger;
-        let htmlRenderResult = "";
         if ($('#taskName')[0].value != "" && $('#taskDescription')[0].value != "" && $('#taskCategory')[0].value != "") {
             let taskName = $('#taskName')[0].value;
             let taskDescription = $('#taskDescription')[0].value;
@@ -252,7 +256,11 @@ $(document).ready(function () {
 
     //Show To do From To Do List
     $('#navbar').on('click', '[data-action="showTasks"]', function(){
+        htmlRender = "";
+        $('[data-table="' + localStorage.getItem('currentTodoList') + '"]').html(htmlRender);
         localStorage.setItem('currentTodoList', $(this)["0"].attributes[2].nodeValue);
+        TableCreation(localStorage.getItem('currentTodoList'));
+
         $.get("http://192.168.33.10:8000/api/todo", {Authorization:localStorage.getItem('token'), todo_id:localStorage.getItem('currentTodoList')}, function (data) {
             if (data.result.length == 0) {
                 alert("There are no tasks in here");
@@ -261,7 +269,7 @@ $(document).ready(function () {
                 TableCreation(data.result["0"].todo_id);
                 RowTableCreationTitle();
                 for(let i = 0; i < data.result.length ; i++) {
-                    RowTableCreation(data.result[i].todo, data.result[i].description, data.result[i].category);
+                    RowTableCreation(data.result[i].todo, data.result[i].description, data.result[i].category, data.result[i].id);
                 }
                 TaskCreationBar();
             }

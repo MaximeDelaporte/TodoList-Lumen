@@ -112,7 +112,6 @@ $(document).ready(function () {
         z = 0;
 
         let name = $('[data-use="TodoListName"]')[0].value;
-        let htmlRenderTask = "";
         if (name != ""){
 
             $.post("http://192.168.33.10:8000/api/room/list",
@@ -125,9 +124,8 @@ $(document).ready(function () {
                         console.log(data);
                     }
                     else{
-                        debugger;
                         localStorage.setItem('currentTodoList', data.todo_id);
-                        htmlRenderTask = "<p>Task added</p>";
+
                         //add list name to navbar
                         let todoListName = $('#TodoListName')[0].value;
                         listUl += "<li><a href='#' data-action='showTasks' data-value='" + localStorage.getItem('currentTodoList') + "'>" + todoListName + "</a><b id='removeTodoList' data-action='deleteList'>X</b></li>";
@@ -150,8 +148,6 @@ $(document).ready(function () {
 
     // One TodoList Table creation
     $('body').on('click', '[data-action="newTodo"]',  function () {
-        debugger;
-        let htmlRenderResult = "";
         if ($('#taskName')[0].value != "" && $('#taskDescription')[0].value != "" && $('#taskCategory')[0].value != "") {
             let taskName = $('#taskName')[0].value;
             let taskDescription = $('#taskDescription')[0].value;
@@ -169,32 +165,23 @@ $(document).ready(function () {
                         console.log(data);
                     }
                     else{
-                        //it's ok
                         debugger;
+                        if (z == 0) {
+                            RowTableCreationTitle();
+                            z++;
+                        }
                         i = data.result[0].id;
+                        htmlRender += "<tr>";
+                        htmlRender += "<td><input type='checkbox' data-checktodo='" + i + "'></td>";
+                        htmlRender += "<td>" + taskName + "</td>";
+                        htmlRender += "<td>" + taskDescription + "</td>";
+                        htmlRender += "<td>" + taskCategory + "</td>";
+                        htmlRender += "<td><button name='delete' id='delete-" +  i + " ' data-action='deleteToDo'>Bin</button></td>";
+                        htmlRender += "</tr>";
+                        $('[data-table="' + localStorage.getItem('currentTodoList') + '"]').html(htmlRender);
+
                     }
                 });
-            if (i == 1 && z == 0) {
-                htmlRender = "";
-                htmlRender += "<thead>";
-                htmlRender += "<tr>";
-                htmlRender += "<th>Done</th>";
-                htmlRender += "<th>Task name</th>";
-                htmlRender += "<th>Task Description</th>";
-                htmlRender += "<th>Task Category</th>";
-                htmlRender += "</tr>";
-                htmlRender += "</thead>";
-                z++;
-            }
-            htmlRender += "<tr>";
-            htmlRender += "<td><input type='checkbox' data-checktodo='" + i + "'></td>";
-            htmlRender += "<td>" + taskName + "</td>";
-            htmlRender += "<td>" + taskDescription + "</td>";
-            htmlRender += "<td>" + taskCategory + "</td>";
-            htmlRender += "<td><button name='delete' id='delete-" +  i + " ' data-action='deleteToDo'>Bin</button></td>";
-            htmlRender += "</tr>";
-            i++;
-            $('[data-table="' + localStorage.getItem('currentTodoList') + '"]').html(htmlRender);
         } if ($('#taskName')[0].value == "") {
             alert("Task Name is required");
         } if ($('#taskDescription')[0].value == "") {
@@ -265,6 +252,7 @@ $(document).ready(function () {
         $('[data-table="' + localStorage.getItem('currentTodoList') + '"]').html(htmlRender);
         localStorage.setItem('currentTodoList', $(this)["0"].attributes[2].nodeValue);
         TableCreation(localStorage.getItem('currentTodoList'));
+
         $.get("http://192.168.33.10:8000/api/todo", {Authorization:localStorage.getItem('token'), todo_id:localStorage.getItem('currentTodoList')}, function (data) {
             if (data.result.length == 0) {
                 alert("There are no tasks in here");

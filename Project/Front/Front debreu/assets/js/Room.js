@@ -17,6 +17,24 @@ $(document).ready(function(){
         });
     });
 
+    $('[data-action="newRoomBar"]').on('click', function(){
+        let name = $('[data-use="newRoomNameBar"]')[0].value;
+        $.post("http://192.168.33.10:8000/api/room/",{
+            name: name,
+            Authorization: localStorage.getItem('token')
+        },function(data){
+            if(data.status == "failed"){
+                console.log(data);
+            }
+            else {
+                localStorage.setItem('currentRoom', data.room_id);
+                $('#sidebar ul').append('<li class="room"><a href="#" data-section="mytodolist" data-action="showRoom" data-use="deleteRoom" data-value="' + data.room_id + '">' + data.name + '</a><b id="removeRoom" data-action="deleteRoom">X</b></li>');
+
+            }
+        });
+    });
+
+
     //Show Current Room
     $('[data-action="showRoom"]').on('click', function(){
         let dataRoom_id = $('[data-value]')[0].value;

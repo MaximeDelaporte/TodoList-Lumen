@@ -16,7 +16,6 @@ $('body').ready(function () {
 
     //Login
     $('[data-action="connect"]').on('click',function(){
-        debugger;
         let pass = $('[data-use="password"]')[0].value;
         let email = $('[data-use="email"]')[0].value;
         $.post("http://192.168.33.10:8000/api/login", {email: email, password: pass}, function(data){
@@ -53,8 +52,6 @@ $('body').ready(function () {
                 console.log('erreur');
             }
             else{
-                let htmlRenderResult = "<p>Vous pouvez maintenant vous connecter</p>";
-                $('[data-use="result"]').html(htmlRenderResult);
             }
         })
     });

@@ -1,13 +1,5 @@
 $('body').ready(function () {
     // CONNEXION / LOGIN
-    /*function validateForm(){
-        const identifiant = document.forms["email"].value && document.forms["mdp"].value;
-        if(identifiant === ""){
-            alert("L'identifiant ou le mot de passe doit être rempli");
-            return false;
-        }
-
-    }*/
 
     if(localStorage.getItem('token')){
         $('[data-use="connection"]').toggleClass('hidden');
@@ -70,24 +62,6 @@ $('body').ready(function () {
     // CONNEXION ---------------------------------------------------------
     $('[data-action="connect"]').on('click', function(event) {
         event.preventDefault(); // On l'empèche de soumettre le formulaire
-        const $this = $(this); // l'objet jquery du formulaire
-
-        // Envoi de la requete HTTP en mode asynchrone
-        $.ajax({
-            url: $this.attr('form'), // recupération de form.js
-            type: $this.attr('method'), // récuperation de la méthode POST
-            data: $this.serialize(), //on sérialise les données = Envoi des valeurs du formulaire
-            datatype: 'json',
-            success: function(json){ // si ca s'est passé avec succes
-                // test de la réponse ici
-                if(json.response === 'ok'){
-                    debugger;
-                    alert('création OK');
-                    // On entre dans la todolist
-                    window.location.href = "myroom";
-                }
-            }
-        });
     });
 
     //Basic Deconnection - Remove token From localStorage
@@ -96,22 +70,6 @@ $('body').ready(function () {
         alert("Vous etes deconnecté");
         location.reload();
     });
-
-    /*$('[data-use="connection"]').validate({
-        rules:{
-            mdp : {
-                // required : true,
-                // email : true
-            }
-        },
-        messages : {
-            // mdp : "<p style='color:red;'>Veuillez fournir un mot de passe</p><br>",
-            // email : "L'email est incorrect<br>"
-        },
-        submitHandler:  function(form) {
-            form.submit();
-        }
-    });*/
 
     // Permet de switcher entre la connexion et l'enregistrement.
     $('.message a').on('click', function(){

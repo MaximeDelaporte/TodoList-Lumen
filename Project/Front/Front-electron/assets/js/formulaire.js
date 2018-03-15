@@ -3,7 +3,7 @@ $(document).ready(function() {
 
     $('#create').on('click', function(event) {
         event.preventDefault(); // On l'empèche de soumettre le formulaire
-        const $this = $(this); // l'objet jquery du formulaire
+        /*const $this = $(this); // l'objet jquery du formulaire
 
         // Envoi de la requete HTTP en mode asynchrone
         $.ajax({
@@ -37,9 +37,9 @@ $(document).ready(function() {
                     }
                 });
             }
-        });
+        });*/
     });
-
+/*
 
       jQuery.validator.addMethod("#emailCreate", function(value, element){
         return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(value);
@@ -50,14 +50,6 @@ $(document).ready(function() {
         'Au moins un chiffre' +
         'Au moins six caractères'
         );
+*/
 
-    /*const email = document.addEventListener("email");
-
-    email.addEventListener("keyUp", function(event){
-        if(email){
-            error.innerHTML.email="Nous voudrions une adresse email";
-            error.innerHTML.name="Nous voudrions un nom";
-        }
-
-    });*/
 });

@@ -61,7 +61,7 @@ $(document).ready(function () {
         $('#typingTask').html(createTodoTaskButton).append(input1, input2, input3, datalistInput);
     }
 
-    function RowTableCreationTitle (taskName, taskDescription, taskCategory) {
+    function RowTableCreationTitle () {
             htmlRender = "";
             htmlRender += "<thead>";
             htmlRender += "<tr>";
@@ -254,13 +254,17 @@ $(document).ready(function () {
     $('#navbar').on('click', '[data-action="showTasks"]', function(){
         localStorage.setItem('currentTodoList', $(this)["0"].attributes[2].nodeValue);
         $.get("http://192.168.33.10:8000/api/todo", {Authorization:localStorage.getItem('token'), todo_id:localStorage.getItem('currentTodoList')}, function (data) {
-            debugger;
-            TableCreation(data.result["0"].todo_id);
-            RowTableCreationTitle();
-            for(let i = 0; i < data.result.length ; i++) {
-                RowTableCreation(data.result[i].todo, data.result[i].description, data.result[i].category);
+            if (data.result.length == 0) {
+                alert("There are no tasks in here");
+                TaskCreationBar();
+            } else {
+                TableCreation(data.result["0"].todo_id);
+                RowTableCreationTitle();
+                for(let i = 0; i < data.result.length ; i++) {
+                    RowTableCreation(data.result[i].todo, data.result[i].description, data.result[i].category);
+                }
+                TaskCreationBar();
             }
-            TaskCreationBar();
 
         })
     });

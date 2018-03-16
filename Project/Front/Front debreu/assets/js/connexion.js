@@ -15,9 +15,16 @@ $('body').ready(function () {
     });
 
     //Login
-    $('[data-action="connect"]').on('click',function(){
+    $('[data-action="connect"]').on('click',function(event){
+        event.preventDefault(); // On l'empèche de soumettre le formulaire
+
         let pass = $('[data-use="password"]')[0].value;
         let email = $('[data-use="email"]')[0].value;
+        if (pass == "") {
+            alert("A password is required");
+        } if (email == "") {
+            alert("An e-mail is required");
+        }
         $.post("http://192.168.33.10:8000/api/login", {email: email, password: pass}, function(data){
             if(data.api_key)
             {
@@ -47,24 +54,27 @@ $('body').ready(function () {
         let pass = $('[data-use="newPassword"]')[0].value;
         let name = $('[data-use="newName"]')[0].value;
         let email = $('[data-use="newEmail"]')[0].value;
+        if (pass == "") {
+            alert("A password is required");
+        } if (name == "") {
+            alert("A name is required");
+        } if (email == "") {
+            alert("An e-mail is required");
+        }
         $.post("http://192.168.33.10:8000/api/signup",{name: name, password: pass, email: email}, function(data){
             if(data.error){
                 console.log('erreur');
             }
             else{
+                alert("" + data.name + " profile has been created, you can login now");
             }
         })
-    });
-
-    // CONNEXION ---------------------------------------------------------
-    $('[data-action="connect"]').on('click', function(event) {
-        event.preventDefault(); // On l'empèche de soumettre le formulaire
     });
 
     //Basic Deconnection - Remove token From localStorage
     $('[data-action="disconnect"]').on('click', function(){
         localStorage.removeItem('token');
-        alert("Vous etes deconnecté");
+        alert("You are leaving");
         location.reload();
     });
 

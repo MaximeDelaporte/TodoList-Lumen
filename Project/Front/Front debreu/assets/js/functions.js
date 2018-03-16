@@ -1,7 +1,5 @@
 $(document).ready(function () {
     let htmlRender = "";
-    let htmlRenderBis = "";
-    let htmlRenderTer = "";
     let listUl = "";
     let i;
     let z;
@@ -79,7 +77,7 @@ $(document).ready(function () {
         htmlRender += "<td>" + taskName + "</td>";
         htmlRender += "<td>" + taskDescription + "</td>";
         htmlRender += "<td>" + taskCategory + "</td>";
-        htmlRender += "<td><button name='delete' id='delete-" +  i + " ' data-action='deleteToDo'>Bin</button></td>";
+        htmlRender += "<td><a><i class='far fa-trash-alt' data-delete='" +  i + "' data-action='deleteToDo'></i></a></td>";
         htmlRender += "</tr>";
         $('[data-table="' + localStorage.getItem('currentTodoList') + '"]').html(htmlRender);
     }
@@ -94,13 +92,11 @@ $(document).ready(function () {
     });
 
     $('#edit').on('click', function(){
-      debugger;
       let username = $('#nameEdit')[0].value;
       let email = $('#emailEdit')[0].value;
       let oldpass = $('#mdpOld')[0].value;
       let newpass = $('#mdpEdit')[0].value;
       $.post('http://192.168.33.10:8000/api/profile/' + localStorage.getItem('token') + '/edit/',{name: username, password: newpass, email:email, oldpassword: oldpass, Authorization: localStorage.getItem('token')}, function (data) {
-          debugger;
           if(data == "failed") {
               console.log(data);
           } else
@@ -132,7 +128,7 @@ $(document).ready(function () {
 
     });
     $('[data-action="addUser"]').on('click', function(){
-        var email = $('[data-use="addUser"]')[0].value;
+        let email = $('[data-use="addUser"]')[0].value;
         $.post("http://192.168.33.10:8000/api/room/users/add",{room: localStorage.getItem('currentRoom'), users: email, Authorization: localStorage.getItem('token')}, function(data){
         });
         $.get('http://192.168.33.10:8000/api/room/'+ localStorage.getItem('currentRoom') +'/users/', {Authorization: localStorage.getItem('token')},function(data){
@@ -147,7 +143,6 @@ $(document).ready(function () {
 
     //Delete To Do List
     $('#listTodoList').on('click', '[data-action="deleteList"]', function(){
-        debugger;
         localStorage.setItem('currentTodoList', $(this).parent()["0"].children["0"].attributes[2].value);
         $.get("http://192.168.33.10:8000/api/room/list/"+ localStorage.getItem('currentTodoList') + "/delete/",{Authorization: localStorage.getItem('token')}, function (data) {
             alert('Todo List deleted');
@@ -186,6 +181,8 @@ $(document).ready(function () {
 
                         TableCreation(todoListName);
 
+                        RowTableCreationTitle();
+
 
                         //adding button and the 3 inputs task bar
 
@@ -216,20 +213,16 @@ $(document).ready(function () {
                         console.log(data);
                     }
                     else{
-                        debugger;
-                        if (z == 0) {
-                            RowTableCreationTitle();
-                            z++;
-                        }
                         i = data.result.id;
                         htmlRender += "<tr data-class='" + i +"'>";
                         htmlRender += "<td><input type='checkbox' data-checktodo='" + i + "'></td>";
                         htmlRender += "<td>" + taskName + "</td>";
                         htmlRender += "<td>" + taskDescription + "</td>";
                         htmlRender += "<td>" + taskCategory + "</td>";
-                        htmlRender += "<td><button name='delete' id='delete-" +  i + " ' data-action='deleteToDo'>Bin</button></td>";
+                        htmlRender += "<td><a><i class='far fa-trash-alt' data-delete='" +  i + "' data-action='deleteToDo'></i></a></td>";
                         htmlRender += "</tr>";
                         $('[data-table="' + localStorage.getItem('currentTodoList') + '"]').html(htmlRender);
+                        location.reload();
 
                     }
                 });
@@ -266,35 +259,11 @@ $(document).ready(function () {
     });
 
     // Delete a task
-    $('#mytodolist').on('click', '[name="delete"]',function () {
-        alert('Are you sure?');
-        let firstTr = $('[data-checktodo]')["0"].attributes[1].value; // take the first checkbox id button for initialize "l" in the loop
-
+    $('#mytodolist').on('click', '[data-action="deleteToDo"]',function () {
         $(this).closest('tr').remove();
-        htmlRenderBis = htmlRender.split('<tr>'); // put the string into an array to make easier the deleting
-        for (let k = 2, l=firstTr; k < htmlRenderBis.length; k++, l++) {
-            if($(this).closest('tr')["0"].firstChild.children["0"].attributes[1].value == l){
-                htmlRenderBis[k] = htmlRenderBis[k].replace(/(<.+)/g, ""); //delete the needed table row
-                if (htmlRenderBis[k+1] != null){
-                    for(let m = k+1, n = l; m < htmlRenderBis.length; m++, n++)
-                        htmlRenderBis[m] = htmlRenderBis[m].replace(/-(\d+)/g, '-' + n); //change id from next row if exists
-                }
-                i -= 1;
-            }
-        }
-
-        htmlRenderTer = ""; //reinitialize the variable
-        $.each(htmlRenderBis, function(index, value) {
-            htmlRenderTer += JSON.stringify(htmlRenderBis[index]); // stringify the Array
-        });
-
-        htmlRender = htmlRenderTer.replace(/"([^"]+)"/g, "<tr>$1"); // we put back the tr tag
-        htmlRender = htmlRender.replace(htmlRender.slice(0, 4), ""); // we delete the extra tr tag at the start
-        htmlRender = htmlRender.replace(/""/g, "");
-
-        let $id = firstTr;
+        let $id = $(this)["0"].attributes[1].value;
         $.get("http://192.168.33.10:8000/api/todo/"+ $id + "/delete/", {Authorization:localStorage.getItem('token')});
-        $('[data-table="' + localStorage.getItem('currentTodoList') + '"]').html(htmlRender); // refresh the page
+        //location.reload();
     });
 
     //Show To do From To Do List
@@ -310,7 +279,6 @@ $(document).ready(function () {
 
         $.get("http://192.168.33.10:8000/api/todo", {Authorization:localStorage.getItem('token'), todo_id:localStorage.getItem('currentTodoList')}, function (data) {
             if (data.result.length == 0) {
-                alert("There are no tasks in here");
                 TaskCreationBar();
             } else {
                 TableCreation($("[data-action='showTasks']")["0"].innerText);

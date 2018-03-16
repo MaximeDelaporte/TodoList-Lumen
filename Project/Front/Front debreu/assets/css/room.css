@@ -145,7 +145,7 @@ b:hover
 	cursor: pointer;
 	position: absolute;
 	top: 0;
-	right: -62px;
+	right: -63px;
 	padding: 0;
 	align-items: center;
 }
@@ -168,7 +168,6 @@ b:hover
 {
   display: inline-block;
   padding: 10px;
-  margin-top: 150px;
   margin-left: 100px;
   margin-right: auto;
 }
@@ -182,15 +181,25 @@ b:hover
   position: relative;
 }
 
-#text, #textBar
+#text
+{
+	outline: none;
+	border: 0;
+	background-color: white;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+#textBar
 {
 	outline: none;
 	border: 0;
 	background-color: white;
 	padding: 10px;
 }
+
 #textBar{
-	width:145px;
+	width:139px;
 }
 #createRoom, #createRoomBar
 {
@@ -204,8 +213,8 @@ b:hover
 #createRoomBar
 {
 	font-size: 25px;
-	height: 35px;
-	padding-bottom: 20px;
+	height: 47px;
+	width: 41px;
 	line-height: 17px;
 }
 #createRoom:hover, #createRoomBar:hover

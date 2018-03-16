@@ -43,7 +43,7 @@ a:hover {
 }
 
 .intro .inner {
-    
+
 }
 
 .taskDone {
@@ -52,8 +52,9 @@ a:hover {
 
 #tableTodo {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #mytodolist {
@@ -87,9 +88,80 @@ nav li a {
 }
 
 #navbar {
-    width: 15%;
-    background-color: #8E9CB2;
-    height: 93vh;
+    width: 236px;
+    background-color: lightgrey;
+    position: absolute;
+    right: 0;
+}
+
+[data-use="displayRoomName"] {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+[data-use="displayAuthorizedUsers"] {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.coworker {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.coworker [data-use="addUser"] {
+  display: inline-block;
+  align-items: center;
+  margin-right: 8.5px
+}
+
+.coworker [type="button"] {
+  margin: 0;
+  background-color: #151718;
+  height: 35px;
+  width: 35px;
+  color: lightgrey;
+  border: 0;
+  cursor: pointer;
+  margin-bottom: 60px;
+}
+
+.coworker [type="button"]:hover{
+  background-color: darkred;
+}
+
+#listTodoList {
+  position: absolute;
+  right: 0;
+  display: block;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+#addTodoList {
+  margin: 0;
+  background-color: #151718;
+  height: 35px;
+  width: 35px;
+  color: lightgrey;
+  border: 0;
+}
+
+#addTodoList:hover {
+  color: white;
+  cursor: pointer;
+  background-color: darkred;
+}
+
+#TodoListName {
+margin-right: 15px;
+}
+
+#navbar #listTodoList {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 #typingTask {
@@ -158,8 +230,7 @@ nav li a {
     display: flex;
     flex-direction: column;
     width: 25%;
-    margin-bottom: 15px;
-    padding: 12px 15px;
+    height: 27px;
 }
 
 [type="text"]:focus {

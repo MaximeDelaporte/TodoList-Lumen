@@ -1,17 +1,17 @@
-<template class="section-template">
+<template class="section-template" xmlns="http://www.w3.org/1999/html">
     <section id="settings">
 
         <div class="form">
 
             <!-- Create -->
-            <form class="" id="editProfile" method="post" data-use="edit">
+            <form class="hidden" id="editProfile" method="post" data-use="edit">
               <h2>Edit Profile</h2>
                 <input id="nameEdit" type="text" name="name" placeholder="new username" data-use="editName">
                 <input id="emailEdit" type="email" name="email" placeholder="new email" data-use="editEmail">
                 <input id="mdpOld" type="password" name="mdp" placeholder="old password (Mandatory)" data-use="oldPassword">
                 <input id="mdpEdit" type="password" name="mdp" placeholder="new password" data-use="editPassword">
                 <button data-action="editProfile" id="edit">Edit Profile</button>
-                <p class="message"> <a href="#profile">Dont want to change ?</a></p>
+                <p class="message"> <a href="#profile">Don't want to change ?</a></p>
             </form>
 
 
@@ -21,7 +21,7 @@
             <div data-use="avatar"></div>
             <span data-use="username"></span>
             <span data-use="email"></span>
-            <p><a href="#editProfile" class="message">Edit Profile</a></p>
+            <p class="message"><a href="#editProfile">Edit Profile</a></p>
           </div>
     </section>
 </template>

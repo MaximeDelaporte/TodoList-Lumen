@@ -83,6 +83,7 @@ $(document).ready(function () {
         htmlRender += "</tr>";
         $('[data-table="' + localStorage.getItem('currentTodoList') + '"]').html(htmlRender);
     }
+
     $('#profile').on('click', function(){
       $.get('http://192.168.33.10:8000/api/profile/' + localStorage.getItem('token') + "/", function(data){
         let name = "<h3>" + data[0].name + "</h3>";
@@ -90,20 +91,31 @@ $(document).ready(function () {
         $('[data-use="username"]').html(name);
         $('[data-use="email"]').html(email);
       })
-    })
-    $('button#edit').on('click', function(){
+    });
+
+    $('#edit').on('click', function(){
       debugger;
       let username = $('#nameEdit')[0].value;
       let email = $('#emailEdit')[0].value;
       let oldpass = $('#mdpOld')[0].value;
-      let newpass = $('#mpdEdit')[0].value;
-      $.post('http://192.168.33.10:8000/api/profile/' + localStorage.getItem('token') + '/edit/',{name: name, password: newpass, email:email, oldpassword: oldpass, Authorization: localStorage.getItem('token')});
-    })
+      let newpass = $('#mdpEdit')[0].value;
+      $.post('http://192.168.33.10:8000/api/profile/' + localStorage.getItem('token') + '/edit/',{name: username, password: newpass, email:email, oldpassword: oldpass, Authorization: localStorage.getItem('token')}, function (data) {
+          debugger;
+          if(data == "failed") {
+              console.log(data);
+          } else
+          {
+              alert("Edition completed");
+          }
+      });
+    });
+
+
     //Show All To Do List in Current Room
     $('[data-action="showList"]').ready(function(){
       $.get('http://192.168.33.10:8000/api/room/'+ localStorage.getItem('currentRoom') + '/', {Authorization: localStorage.getItem('token')},function(data){
         $('[data-use="displayRoomName"]').html('<h2>'+ data[0].name + '</h2>');
-      })
+      });
       $.get('http://192.168.33.10:8000/api/room/'+ localStorage.getItem('currentRoom') +'/users/', {Authorization: localStorage.getItem('token')},function(data){
         let users = "<p> Users : ";
         for(let i = 0; i < data.length; i++){
@@ -111,7 +123,7 @@ $(document).ready(function () {
         }
         users += "</p>";
         $('[data-use="displayAuthorizedUsers"]').html(users);
-      })
+      });
         $.get("http://192.168.33.10:8000/api/room/list/all",{room_id: localStorage.getItem('currentRoom'), Authorization: localStorage.getItem('token')}, function (data) {
             for(let i = 0; i < data.result.length;i++) {
                 $('[data-action="showList"]').append('<li class=""><a href="#" data-action="showTasks" data-value="' + data.result[i].id + '">' + data.result[i].name + '</a><b id="removeTodoList" data-action="deleteList">X</b></li>');

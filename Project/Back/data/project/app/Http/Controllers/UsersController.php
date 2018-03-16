@@ -37,6 +37,10 @@ class UsersController extends Controller
             return response()->json(['status' => 'fail'],401);
         }
     }
+    public function show($token){
+      $user = Users::where('api_key','=', $token)->get();
+      return response()->json($user);
+    }
     public function setPasswordAttribute($password)
     {
         $this->attributes['password']= Hash::make($password);

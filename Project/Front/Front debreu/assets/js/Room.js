@@ -57,7 +57,25 @@ $(document).ready(function(){
     $('body').on('click','.room', function(){
       let $room_id = $(this).contents().data("value");
       localStorage.setItem('currentRoom', $room_id);
-       $.get("http://192.168.33.10:8000/api/room/list/all",{room_id: localStorage.getItem('currentRoom'), Authorization: localStorage.getItem('token')});
+       $.get('http://192.168.33.10:8000/api/room/'+ localStorage.getItem('currentRoom') + '/', {Authorization: localStorage.getItem('token')},function(data){
+         $('[data-use="displayRoomName"]').html('<h2>'+ data[0].name + '</h2>');
+       })
+       $.get('http://192.168.33.10:8000/api/room/'+ localStorage.getItem('currentRoom') +'/users/', {Authorization: localStorage.getItem('token')},function(data){
+         let users = "<p> Users : ";
+         for(let i = 0; i < data.length; i++){
+             users += data[i].name + " ";
+         }
+         users += "</p>";
+         $('[data-use="displayAuthorizedUsers"]').html(users);
+       })
+       $('[data-action="showList"]').html("");
+       $('[data-action="createTable"]').html('');
+       $('#typingTask').html('');
+         $.get("http://192.168.33.10:8000/api/room/list/all",{room_id: localStorage.getItem('currentRoom'), Authorization: localStorage.getItem('token')}, function (data) {
+             for(let i = 0; i < data.result.length;i++) {
+                 $('[data-action="showList"]').append('<li class=""><a href="#" data-action="showTasks" data-value="' + data.result[i].id + '">' + data.result[i].name + '</a><b id="removeTodoList" data-action="deleteList">X</b></li>');
+             }
+         })
     });
 
     // Delete a room with id

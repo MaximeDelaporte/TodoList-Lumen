@@ -182,15 +182,17 @@ b:hover
   position: relative;
 }
 
-#text
+#text, #textBar
 {
 	outline: none;
 	border: 0;
 	background-color: white;
 	padding: 10px;
 }
-
-#createRoom
+#textBar{
+	width:145px;
+}
+#createRoom, #createRoomBar
 {
 	outline: none;
 	border: 0;
@@ -199,8 +201,14 @@ b:hover
 	background-color: #151718;
 	cursor: pointer;
 }
-
-#createRoom:hover
+#createRoomBar
+{
+	font-size: 25px;
+	height: 35px;
+	padding-bottom: 20px;
+	line-height: 17px;
+}
+#createRoom:hover, #createRoomBar:hover
 {
 	background-color: darkred;
 	color: white;

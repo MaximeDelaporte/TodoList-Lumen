@@ -5,8 +5,15 @@
                 <ul id="listTodoList" data-action="showList"></ul>
             </nav>
             <div class="inner">
+              <div class="roomInfos">
+                <div data-use="displayRoomName"></div>
+                <div data-use="displayAuthorizedUsers"></div>
+                <div>
+                <input type="email" data-use="addUser" placeholder="Add coworker here">
+                <input type="button" data-action="addUser" value="Add">
+              </div>
+              </div>
                 <div id="tableTodo" data-use="task">
-                    <h2>Todo List</h2>
                     <input type="text" id="TodoListName" data-use="TodoListName" placeholder="Type your todo List Name">
                     <button data-action="createList" data-use="addTodoList" id="addTodoList">+</button>
                 </div>

@@ -83,15 +83,54 @@ $(document).ready(function () {
         htmlRender += "</tr>";
         $('[data-table="' + localStorage.getItem('currentTodoList') + '"]').html(htmlRender);
     }
-
+    $('#profile').on('click', function(){
+      $.get('http://192.168.33.10:8000/api/profile/' + localStorage.getItem('token') + "/", function(data){
+        let name = "<h3>" + data[0].name + "</h3>";
+        let email = data[0].email;
+        $('[data-use="username"]').html(name);
+        $('[data-use="email"]').html(email);
+      })
+    })
+    $('button#edit').on('click', function(){
+      debugger;
+      let username = $('#nameEdit')[0].value;
+      let email = $('#emailEdit')[0].value;
+      let oldpass = $('#mdpOld')[0].value;
+      let newpass = $('#mpdEdit')[0].value;
+      $.post('http://192.168.33.10:8000/api/profile/' + localStorage.getItem('token') + '/edit/',{name: name, password: newpass, email:email, oldpassword: oldpass, Authorization: localStorage.getItem('token')});
+    })
     //Show All To Do List in Current Room
     $('[data-action="showList"]').ready(function(){
+      $.get('http://192.168.33.10:8000/api/room/'+ localStorage.getItem('currentRoom') + '/', {Authorization: localStorage.getItem('token')},function(data){
+        $('[data-use="displayRoomName"]').html('<h2>'+ data[0].name + '</h2>');
+      })
+      $.get('http://192.168.33.10:8000/api/room/'+ localStorage.getItem('currentRoom') +'/users/', {Authorization: localStorage.getItem('token')},function(data){
+        let users = "<p> Users : ";
+        for(let i = 0; i < data.length; i++){
+            users += data[i].name + " ";
+        }
+        users += "</p>";
+        $('[data-use="displayAuthorizedUsers"]').html(users);
+      })
         $.get("http://192.168.33.10:8000/api/room/list/all",{room_id: localStorage.getItem('currentRoom'), Authorization: localStorage.getItem('token')}, function (data) {
             for(let i = 0; i < data.result.length;i++) {
                 $('[data-action="showList"]').append('<li class=""><a href="#" data-action="showTasks" data-value="' + data.result[i].id + '">' + data.result[i].name + '</a><b id="removeTodoList" data-action="deleteList">X</b></li>');
             }
-        })
+        });
 
+    });
+    $('[data-action="addUser"]').on('click', function(){
+        var email = $('[data-use="addUser"]')[0].value;
+        $.post("http://192.168.33.10:8000/api/room/users/add",{room: localStorage.getItem('currentRoom'), users: email, Authorization: localStorage.getItem('token')}, function(data){
+        });
+        $.get('http://192.168.33.10:8000/api/room/'+ localStorage.getItem('currentRoom') +'/users/', {Authorization: localStorage.getItem('token')},function(data){
+          let users = "<p> Users : ";
+          for(let i = 0; i < data.length; i++){
+              users += data[i].name + " ";
+          }
+          users += "</p>";
+          $('[data-use="displayAuthorizedUsers"]').html(users);
+        })
     });
 
     //Delete To Do List
@@ -104,6 +143,7 @@ $(document).ready(function () {
         $(this).parent()["0"].remove();
 
 
+
     });
 
     //Create New To Do List in Current Room
@@ -113,7 +153,6 @@ $(document).ready(function () {
 
         let name = $('[data-use="TodoListName"]')[0].value;
         if (name != ""){
-
             $.post("http://192.168.33.10:8000/api/room/list",
                 {
                     name:name ,
@@ -127,7 +166,7 @@ $(document).ready(function () {
                         localStorage.setItem('currentTodoList', data.todo_id);
 
                         //add list name to navbar
-                        let todoListName = $('#TodoListName')[0].value;
+                        let todoListName = name;
                         listUl += "<li><a href='#' data-action='showTasks' data-value='" + localStorage.getItem('currentTodoList') + "'>" + todoListName + "</a><b id='removeTodoList' data-action='deleteList'>X</b></li>";
                         $('#listTodoList').html(listUl);
 
@@ -170,7 +209,7 @@ $(document).ready(function () {
                             RowTableCreationTitle();
                             z++;
                         }
-                        i = data.result[0].id;
+                        i = data.result.id;
                         htmlRender += "<tr data-class='" + i +"'>";
                         htmlRender += "<td><input type='checkbox' data-checktodo='" + i + "'></td>";
                         htmlRender += "<td>" + taskName + "</td>";
@@ -251,7 +290,11 @@ $(document).ready(function () {
         htmlRender = "";
         $('[data-table="' + localStorage.getItem('currentTodoList') + '"]').html(htmlRender);
         localStorage.setItem('currentTodoList', $(this)["0"].attributes[2].nodeValue);
-        TableCreation(localStorage.getItem('currentTodoList'));
+        $.get("http://192.168.33.10:8000/api/room/list/" + localStorage.getItem('currentTodoList') + "/", {Authorization: localStorage.getItem('token')},function(data){
+          let todoListName = data[0].name;
+          TableCreation(todoListName);
+        });
+
 
         $.get("http://192.168.33.10:8000/api/todo", {Authorization:localStorage.getItem('token'), todo_id:localStorage.getItem('currentTodoList')}, function (data) {
             if (data.result.length == 0) {

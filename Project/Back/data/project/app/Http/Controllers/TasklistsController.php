@@ -85,7 +85,7 @@ class TasklistsController extends Controller
     public function users($room)
     {
 
-        $users = Users::join('tasklists', 'users.id','=','tasklists.user_id')->where('tasklists.room_id','=', $room)->get();
+        $users = Users::join('tasklists', 'users.id','=','tasklists.user_id')->where('tasklists.room_id','=', $room)->orderBy('name','asc')->get();
 
         return response()->json($users);
     }
@@ -130,12 +130,24 @@ class TasklistsController extends Controller
             'users' => 'filled',
             'room'  => 'filled'
         ]);
-        $emailExists = Users::where('email','=', $request->input('users'))->exists();
+        $emailExists = Users::where('email','=', $request->input('users'))->orWhere('name','=', $request->input('users'))->exists();
         $roomExists = Rooms::where('name','=', $request->input('room'))->orWhere('id','=', $request->input('room'))->exists();
         $admin_id = Users::where('api_key','=',$request->input('Authorization'))->value('id');
-        $room_id = Rooms::where([['id','=', $request->input('room')],['admin','=', $admin_id]])->orWhere([['name','=',$request->input('room')],['admin','=',$admin_id]])->value('id');
+        $user_name = Users::where('name','=', $request->input('users'))->value('id');
+        $room_id = $request->input('room');//Tasklists::where([['room_id','=', $request->input('room')],['user_id','=', $admin_id]])->value('id');
         $user_id = Users::where('email','=', $request->input('users'))->value('id');
-        $exist = Tasklists::where([['user_id','=', $user_id],['room_id','=', $room_id]])->exists();
+        //return response()->json([$emailExists,$roomExists,$admin_id,$user_name,$room_id,$user_id]);
+        if(!empty($user_name)){
+          $exist = Tasklists::where([['user_id','=', $user_name],['room_id','=', $room_id]])->exists();
+          $user = $user_name;
+        }
+        elseif(!empty($user_id)){
+          $exist = Tasklists::where([['user_id','=', $user_id],['room_id','=', $room_id]])->exists();
+          $user = $user_id;
+        }
+        else{
+          return response()->json(['status'=>'failed','result' =>"user doesn't exist"],401);
+        }
         if ($roomExists){
 
             if($emailExists) {
@@ -144,7 +156,7 @@ class TasklistsController extends Controller
                         $newRoom = new Tasklists;
 
                         if ($newRoom->fill([
-                            'user_id' => $user_id,
+                            'user_id' => $user,
                             'room_id' => $room_id
                         ])->save()) {
                             return response()->json(['status' => 'success', 'room_id' => $room_id]);

@@ -18,21 +18,17 @@
                 <!-- PROFILE SIDENAV -->
                 <div class="sidenav">
                     <img src="assets/images/avatar.png" alt="Avatar">
-                    <a href="#editProfile">profile</a>
+                    <a id="profile"href="#profile" data-section="settings">profile</a>
                     <a id="welcome-topbar" data-section="welcome" href="#" data-use="connection" class="hidden">Home</a>
-                    <a href="#email">
-                        <i class="fas fa-plus"></i>
-                        <i class="far fa-envelope"></i>
-                    </a>
+
                     <!--<a id="settings-topbar" data-section="settings" href="#" data-use="editProfile" class="hidden"><i class="fas fa-cogs"></i></a>-->
-                    <a id="myroom-menu" data-section="myroom" data-use="room" href="#" class="hidden">My room</a>
                     <a id="logout-topbar" data-section="welcome" href="#" data-action="disconnect" class="hidden"><i class="fas fa-power-off"></i></a>
 
                 </div>
                 <!-- Sidebar -->
                 <div id="sidebar">
                     <ul id="list-room" data-action="getRooms">
-                        <li class="eRoom"><input class="exampleRoom" type='text' id="text" placeholder="Name of your room" data-use="newRoomNameBar"><input class="addbtn" type="button" onclick="window.location.href='#'" id="createRoom" name="createRoom" value="Create a Room" data-action="newRoomBar"><i class="fas fa-plus"></i></li>
+                        <li class="eRoom"><input class="exampleRoom" type='text' id="textBar" placeholder="Name of your room" data-use="newRoomNameBar"><input class="addbtn" type="button" onclick="window.location.href='#'" id="createRoomBar" name="createRoom" value="+" data-action="newRoomBar"></li>
                     </ul>
                     <div id="sidebar-btn">
                         <p>Room</p>

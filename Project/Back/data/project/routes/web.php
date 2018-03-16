@@ -15,7 +15,7 @@ $app->get('/', function () use ($app) {
 $app->group(['prefix' => 'api/'], function ($app) {
     $app->post('login/','UsersController@authenticate');
     $app->post('signup/','UsersController@create');
-    $app->get('profile/', 'UsersController@show');
+    $app->get('profile/{token}', 'UsersController@show');
     $app->post('profile/{token}/edit/','UsersController@update');
     $app->post('room/', 'RoomsController@store');
     $app->get('room/all/', 'TasklistsController@index');

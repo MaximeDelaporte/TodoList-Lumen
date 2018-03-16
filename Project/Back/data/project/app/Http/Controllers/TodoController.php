@@ -25,7 +25,7 @@ class TodoController extends Controller
     public function index(Request $request)
     {
         $todo_id = $request->input('todo_id');
-     
+
         $todo = Todo::where('todo_id','=', $todo_id)->/*groupBy('category')->*/get();
         return response()->json(['status' => 'success','result' => $todo]);
     }
@@ -43,17 +43,20 @@ class TodoController extends Controller
         ]);
         $user = Tasklists::join('users','tasklists.user_id','users.id')->where('users.api_key','=',$request->input('Authorization'))->get();
 
-        if($user)
-            if(Todo::Create([
-                'todo' => $request->input('todo'),
-                'description'=> $request->input('description'),
-                'category' => $request->input('category'),
-                'finished' => false,
-                'todo_id' =>$request->input('todo_id')
-                ])->save($todo)){
-            return response()->json(['status' => 'success', 'result' => $todo ]);
-        }else{
-            return response()->json(['status' => 'fail']);
+        if($user){
+        $todo = Todo::Create([
+            'todo' => $request->input('todo'),
+            'description'=> $request->input('description'),
+            'category' => $request->input('category'),
+            'finished' => false,
+            'todo_id' =>$request->input('todo_id')
+          ]);
+            if($todo->save()){
+              return response()->json(['status' => 'success', 'result' => $todo ]);
+            }
+            else{
+              return response()->json(['status' => 'fail']);
+            }
         }
     }
     /**

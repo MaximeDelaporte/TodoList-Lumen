@@ -1,9 +1,0 @@
-{
-  "name": "new electron",
-  "version": "0.0.1",
-  "main": "main.js",
-  "dependencies": {},
-  "devDependencies": {
-    "electron": "^1.8.2"
-  }
-}

@@ -1,0 +1,26 @@
+<template class="section-template">
+    <section id="myroom">
+        <section class="inner">
+            <!-- Sidebar -->
+            <div id="sidebar">
+                <ul data-action="getRooms"></ul>
+
+                <div id="sidebar-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+            </div>
+
+            <div class="content">
+                <h1>Bienvenue !</h1>
+                <p>Vous pouvez choisir votre Room dans le menu à gauche</p>
+                <p>Ou bien vous pouvez créer un Room en cliquant sur le bouton en dessous</p>
+                <input type='text' id="text" placeholder="Name of your room" data-use="newRoomName">
+                <input type="button" onclick="window.location.href='#'" id="createRoom" name="createRoom" value="Create a Room" data-action="newRoom">
+            </div>
+
+        </section>
+    </section>
+</template>

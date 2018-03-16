@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>TOP THAT</title>
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/room.css">
+        <link rel="import" href="assets/sections/Welcome.html">
+        <link rel="import" href="assets/sections/loginpage.html">
+        <link rel="import" href="assets/sections/mytodolist.html">
+        <link rel="import" href="assets/sections/room.html">
+        <link rel="import" href="assets/sections/settings.html">
+    </head>
+    <body>
+        <div data-use="sidebar" class="hidden">
+            <div class="gauche">
+                <!-- PROFILE SIDENAV -->
+                <div class="sidenav">
+                    <img src="assets/images/avatar.png" alt="Avatar">
+                    <a id="profile" href="#profile" data-section="settings">Profile</a>
+                    <a id="welcome-topbar" data-section="welcome" href="#" data-use="connection" class="hidden">Home</a>
+                    <a id="logout-topbar" data-section="welcome" href="#" data-action="disconnect" class="hidden"><i class="fas fa-power-off"></i></a>
+
+                </div>
+                <!-- Sidebar -->
+                <div id="sidebar">
+                    <ul id="list-room" data-action="getRooms">
+                        <li class="eRoom"><input class="exampleRoom" type='text' id="textBar" placeholder="Name of your room" data-use="newRoomNameBar"><input class="addbtn" type="button" onclick="window.location.href='#'" id="createRoomBar" name="createRoom" value="+" data-action="newRoomBar"></li>
+                    </ul>
+                    <div id="sidebar-btn">
+                        <p>Room</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="wrapper">
+        </div>
+
+    </body>
+    <script>window.$ = window.jQuery = require('./assets/js/jquery.min.js');</script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <script>
+        require('./assets/js/menu.js');
+        require('./assets/js/functions.js');
+        require('./assets/js/connexion.js');
+        //require('./assets/js/formulaire.js');
+        require('./assets/js/Room.js');
+    </script>
+</html>

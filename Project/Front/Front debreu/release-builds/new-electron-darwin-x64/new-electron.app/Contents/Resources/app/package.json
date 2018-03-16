@@ -1,0 +1,16 @@
+{
+  "name": "new-electron",
+  "productName": "Top That",
+  "version": "0.0.1",
+  "main": "main.js",
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^1.8.3",
+    "electron-packager": "^11.1.0"
+  },
+  "scripts": {
+    "package-mac": "electron-packager . new-electron --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/topthat.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . new-electron --overwrite --asar=true --platform=win32 --arch=x64 --icon=assets/icons/win/topthat.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName='Top That'",
+    "package-linux": "electron-packager . new-electron --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/512x512.png --prune=true --out=release-builds"
+  }
+}

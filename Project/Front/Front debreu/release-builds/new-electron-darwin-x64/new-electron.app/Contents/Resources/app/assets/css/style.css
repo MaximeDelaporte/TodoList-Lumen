@@ -1,0 +1,339 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: lightgrey;
+  font-family: sans-serif;
+
+}
+
+a {
+    text-decoration: none;
+    color: #ff9749;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #ffedea;
+}
+
+#wrapper {
+    margin-left: 0;
+    padding-top: 3em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#wrapper+#sidebar {
+        margin-left: 18em;
+}
+#wrapper+#header>.wrapper>.container>.inner {
+            margin: 0 auto;
+}
+
+#wrapper section {
+    display: none
+}
+
+.intro {
+
+    background-size: 100% 100%;
+    background: /*url("images/intro.svg"),*/ no-repeat, top right, fixed;
+}
+
+.intro .inner {
+
+}
+
+.taskDone {
+    color: green !important;
+}
+
+#tableTodo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#mytodolist {
+    width: 100%;
+}
+
+#myroom {
+    width: inherit;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+nav li {
+    padding-bottom: 15px;
+    list-style: none;
+}
+
+nav li a {
+    text-decoration: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.inner{
+    width: 90%;
+}
+
+#navbar {
+    width: 236px;
+    background-color: lightgrey;
+    position: absolute;
+    right: 0;
+}
+
+[data-use="displayRoomName"] {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+[data-use="displayAuthorizedUsers"] {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.coworker {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.coworker [data-use="addUser"] {
+  display: inline-block;
+  align-items: center;
+  margin-right: 8.5px
+}
+
+.coworker [type="button"] {
+  margin: 0;
+  background-color: #151718;
+  height: 35px;
+  width: 35px;
+  color: lightgrey;
+  border: 0;
+  cursor: pointer;
+  margin-bottom: 60px;
+}
+
+.coworker [type="button"]:hover{
+  background-color: darkred;
+}
+
+#listTodoList {
+  position: absolute;
+  right: 0;
+  display: block;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+#addTodoList {
+  margin: 0;
+  background-color: #151718;
+  height: 35px;
+  width: 35px;
+  color: lightgrey;
+  border: 0;
+}
+
+#addTodoList:hover {
+  color: white;
+  cursor: pointer;
+  background-color: darkred;
+}
+
+#TodoListName {
+margin-right: 15px;
+}
+
+#navbar #listTodoList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#typingTask {
+    display: flex;
+    align-items: baseline;
+    width: 75%;
+}
+
+[data-action='createTable'] {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --------------------------------------- */
+/* --------- LOGIN + REGISTER  ----------- */
+/* --------------------------------------- */
+
+.login-page{
+    display: flex;
+    justify-content: center;
+    padding: 10% 0 0;
+}
+
+.form{
+    z-index: 1;
+    text-align: center;
+}
+
+.form input{
+    width: auto;
+    margin: 0 0 15px;
+    padding: 15px;
+}
+
+.form button{
+    margin-top: 15px;
+    padding: 5px 15px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    background-color: transparent;
+}
+
+.form button:hover {
+    background: #151718;
+    margin-top: 15px;
+    padding: 5px 15px;
+    color: white;
+    outline: none;
+    border: none;
+    transition-property: background-color;
+    transition-timing-function: ease-in-out;
+    transition-duration:  650ms;
+    animation-iteration-count: infinite;
+}
+
+[type="text"] {
+    background-color: transparent;
+    text-align: center;
+    border: none;
+    border-style: inherit;
+    border-bottom: .5px solid #151718;
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 27px;
+}
+
+[type="text"]:focus {
+    color: #151718;
+    outline: none;
+    border-bottom: .5px solid darkred;
+}
+
+[type="text"]:hover {
+    border-bottom: .5px solid darkred;
+}
+
+[type="password"] {
+    background-color: transparent;
+    text-align: center;
+    border: none;
+    border-style: hidden;
+    border-bottom: .5px solid #151718;
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    padding: 12px 15px;
+    text-decoration: none;
+}
+
+[type="password"]:focus {
+    color: #151718;
+    outline: none;
+    border-bottom: .5px solid darkred;
+}
+
+[type="password"]:hover{
+    border-bottom: .5px solid darkred;
+}
+
+[type="email"]{
+    background-color: transparent;
+    text-align: center;
+    border: none;
+    border-style: hidden;
+    border-bottom: .5px solid #151718;
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    padding: 12px 15px;
+    text-decoration: none;
+}
+
+[type="email"]:focus {
+    color: #151718;
+    outline: none;
+    border-bottom: .5px solid darkred;
+}
+
+[type="email"]:hover{
+    border-bottom: .5px solid darkred;
+}
+
+::placeholder {
+    color: darkred;
+}
+
+
+[type="create"] {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    padding: 5px 15px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    background-color: transparent;
+    border-bottom: .5px solid #151718;
+}
+
+[type="create"]:hover {
+    background: #151718;
+    margin-top: 15px;
+    padding: 5px 15px;
+    color: whitesmoke;
+    outline: none;
+    border: none;
+    transition-property: background-color;
+    transition-timing-function: ease-in-out;
+    transition-duration:  650ms;
+    animation-iteration-count: infinite;
+}
+
+.message {
+    font-size: 10px;
+    margin-top: 30px;
+}
+
+.message a{
+    text-decoration: none;
+    color: darkred;
+}
+
+.message a:hover{
+    color: #151718;
+}
+
+.form .register-form{
+    display: none;
+}
